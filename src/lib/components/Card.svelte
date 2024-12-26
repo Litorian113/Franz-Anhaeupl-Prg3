@@ -24,7 +24,7 @@
             <div class="left-main-section">
                 <div class="attribute-section">
                     <div class="icon stregth">
-                        <img src = "/images/icon-stregth.svg" class="scaleLOL" alt="Strength Icon"/>
+                        <img src = "/vectors/icon-stregth.svg" class="scaleLOL" alt="Strength Icon"/>
                     </div>
                     <div class="value stregth">
                         <p class="value-text">420</p>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="attribute-section">
                     <div class="icon weight">
-                        <img src = "/images/icon-weight.svg" class="scaleLOL" alt="Weight Icon"/>
+                        <img src = "/vectors/icon-weight.svg" class="scaleLOL" alt="Weight Icon"/>
                     </div>
                     <div class="value weight">
                         <p class="value-text">420</p>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="attribute-section">
                     <div class="icon speed">
-                        <img src = "/images/icon-speed.svg" class="scaleLOL" alt="Speed Icon"/>
+                        <img src = "/vectors/icon-speed.svg" class="scaleLOL" alt="Speed Icon"/>
                     </div>
                     <div class="value speed">
                         <p class="value-text">420</p>
@@ -52,7 +52,7 @@
             <div class="right-main-section">
                 <div class="attribute-section">
                     <div class="icon length">
-                        <img src = "/images/icon-size.svg" class="scaleLOL" alt="Size Icon"/>
+                        <img src = "/vectors/icon-size.svg" class="scaleLOL" alt="Size Icon"/>
                     </div>
                     <div class="value length">
                         <p class="value-text">420</p>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="attribute-section">
                     <div class="icon death">
-                        <img src = "/images/icon-death.svg" class="scaleLOL" alt="Strength Icon"/>
+                        <img src = "/vectors/icon-death.svg" class="scaleLOL" alt="Strength Icon"/>
                     </div>
                     <div class="value death">
                         <p class="value-text">420</p>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="attribute-section">
                     <div class="icon intelligence">
-                        <img src = "/images/icon-intelligence.svg" class="scaleLOL" alt="Strength Icon"/>
+                        <img src = "/vectors/icon-intelligence.svg" class="scaleLOL" alt="Strength Icon"/>
                     </div>
                     <div class="value intelligence">
                         <p class="value-text">420</p>
