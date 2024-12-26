@@ -25,7 +25,7 @@
   </div>
 
   <div class="image-section">
-    <img src="/images/{animal.name_german.toLowerCase()}0{animal.id}.webp" alt={animal.name} class="img-respo" />
+    <img src="/images/{animal.name_german.toLowerCase()}{animal.id < 10 ? `0${animal.id}` : animal.id}.webp" alt={animal.name} class="img-respo" />
   </div>
 
   <div class="trivia-section">
