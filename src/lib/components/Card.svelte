@@ -3,6 +3,7 @@
 
 </script>
 
+  
     <div class="card-wrapper">
         <div class="top-section">
             <div class="card-id">
@@ -14,7 +15,7 @@
 
         </div>
         <div class="image-section">
-            <!-- <img src="/images/Trooper2.webp" alt="Stormtrooper" class="img-respo"> -->
+            <img src="/images/loewe01.webp" alt="Stormtrooper" class="img-respo">
         </div>
         <div class="trivia-section">
             <p class="trivia-style">Schocktruppen sind Spezialeinheiten der Galaktischen Republik.</p>
@@ -99,11 +100,7 @@
 * {
     box-sizing: border-box;
 }
-body {
-    margin: 0;
-    font-family: 'Jedi', sans-serif;
-    background-color: #181818;
-}
+
 
 p {
     font-size: 18px;
@@ -129,6 +126,8 @@ p {
 }
 
 .card-wrapper {
+    font-family: 'Jedi', sans-serif;
+
     backdrop-filter: blur(10px); /* Weichzeichner-Effekt */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     color: #fff;
@@ -137,6 +136,7 @@ p {
     border-radius: 40px;
     width: 380px;
     height: 666px;
+    background-color: #181818;
 }
 
 .img-respo {
