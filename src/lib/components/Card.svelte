@@ -10,6 +10,16 @@
     5: "#e9c46a"   // Gelb
   };
 
+    // Funktion zur Ersetzung von Umlauten
+    function replaceUmlauts(str) {
+    return str
+      .toLowerCase()
+      .replace(/ä/g, "ae")
+      .replace(/ö/g, "oe")
+      .replace(/ü/g, "ue")
+      .replace(/ß/g, "ss");
+  }
+
   // Fallback, falls keine passende Gruppe gefunden wird
   const groupColor = groupColors[animal.group_number] || "#6d6875";
 </script>
@@ -25,8 +35,7 @@
   </div>
 
   <div class="image-section">
-    <img src="/images/{animal.name_german.toLowerCase()}{animal.id < 10 ? `0${animal.id}` : animal.id}.webp" alt={animal.name} class="img-respo" />
-  </div>
+    <img src="/images/{replaceUmlauts(animal.name_german)}{animal.id < 10 ? `0${animal.id}` : animal.id}.webp" alt={animal.name} class="img-respo" />  </div>
 
   <div class="trivia-section">
     <p class="trivia-style">{animal.trivia_german}</p>
