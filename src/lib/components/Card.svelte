@@ -1,86 +1,99 @@
 <script>
+  export let animal;
 
+  // Farbzuordnung für Gruppen
+  const groupColors = {
+    1: "#e63946",  // Rot
+    2: "#f4a261",  // Orange
+    3: "#2a9d8f",  // Grün
+    4: "#264653",  // Dunkelblau
+    5: "#e9c46a"   // Gelb
+  };
 
+  // Fallback, falls keine passende Gruppe gefunden wird
+  const groupColor = groupColors[animal.group_number] || "#6d6875";
 </script>
 
-  
-    <div class="card-wrapper">
-        <div class="top-section">
-            <div class="card-id">
-                <p>id.1</p>
-            </div>
-            <div class="card-title">
-                <p>Stormtrooper Desert</p>
-            </div>
-
-        </div>
-        <div class="image-section">
-            <img src="/images/loewe01.webp" alt="Stormtrooper" class="img-respo">
-        </div>
-        <div class="trivia-section">
-            <p class="trivia-style">Schocktruppen sind Spezialeinheiten der Galaktischen Republik.</p>
-
-        </div>
-        <div class="main-section">
-            <div class="left-main-section">
-                <div class="attribute-section">
-                    <div class="icon stregth">
-                        <img src = "/vectors/icon-stregth.svg" class="scaleLOL" alt="Strength Icon"/>
-                    </div>
-                    <div class="value stregth">
-                        <p class="value-text">420</p>
-                    </div>
-                </div>
-                <div class="attribute-section">
-                    <div class="icon weight">
-                        <img src = "/vectors/icon-weight.svg" class="scaleLOL" alt="Weight Icon"/>
-                    </div>
-                    <div class="value weight">
-                        <p class="value-text">420</p>
-                    </div>
-                </div>
-                <div class="attribute-section">
-                    <div class="icon speed">
-                        <img src = "/vectors/icon-speed.svg" class="scaleLOL" alt="Speed Icon"/>
-                    </div>
-                    <div class="value speed">
-                        <p class="value-text">420</p>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="right-main-section">
-                <div class="attribute-section">
-                    <div class="icon length">
-                        <img src = "/vectors/icon-size.svg" class="scaleLOL" alt="Size Icon"/>
-                    </div>
-                    <div class="value length">
-                        <p class="value-text">420</p>
-                    </div>
-                </div>
-                <div class="attribute-section">
-                    <div class="icon death">
-                        <img src = "/vectors/icon-death.svg" class="scaleLOL" alt="Strength Icon"/>
-                    </div>
-                    <div class="value death">
-                        <p class="value-text">420</p>
-                    </div>
-                </div>
-                <div class="attribute-section">
-                    <div class="icon intelligence">
-                        <img src = "/vectors/icon-intelligence.svg" class="scaleLOL" alt="Strength Icon"/>
-                    </div>
-                    <div class="value intelligence">
-                        <p class="value-text">420</p>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-
+<div class="card-wrapper">
+  <div class="top-section">
+    <div class="card-id" style="background-color: {groupColor};">
+      <p>id.{animal.id}</p>
     </div>
+    <div class="card-title">
+      <p>{animal.name_german}</p>
+    </div>
+  </div>
+
+  <div class="image-section">
+    <img src="/images/{animal.name_german.toLowerCase()}0{animal.id}.webp" alt={animal.name} class="img-respo" />
+  </div>
+
+  <div class="trivia-section">
+    <p class="trivia-style">{animal.trivia_german}</p>
+  </div>
+
+  <div class="main-section">
+    <div class="left-main-section">
+      <div class="attribute-section">
+        <div class="icon weight">
+          <img src="/vectors/icon-weight.svg" class="scaleLOL" alt="Weight Icon" />
+        </div>
+        <div class="value weight">
+          <p class="value-text">{animal.max_weight} kg</p>
+        </div>
+      </div>
+
+      <div class="attribute-section">
+        <div class="icon age">
+          <img src="/vectors/icon-stregth.svg" class="scaleLOL" alt="Age Icon" />
+        </div>
+        <div class="value age">
+          <p class="value-text">{animal.max_age} Jahre</p>
+        </div>
+      </div>
+
+      <div class="attribute-section">
+        <div class="icon speed">
+          <img src="/vectors/icon-speed.svg" class="scaleLOL" alt="Speed Icon" />
+        </div>
+        <div class="value speed">
+          <p class="value-text">{animal.top_speed} km/h</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-main-section">
+      <div class="attribute-section">
+        <div class="icon length">
+          <img src="/vectors/icon-size.svg" class="scaleLOL" alt="Size Icon" />
+        </div>
+        <div class="value length">
+          <p class="value-text">{animal.max_length} cm</p>
+        </div>
+      </div>
+
+      <div class="attribute-section">
+        <div class="icon death">
+          <img src="/vectors/icon-death.svg" class="scaleLOL" alt="Death Icon" />
+        </div>
+        <div class="value death">
+          <p class="value-text">{animal.deaths}</p>
+        </div>
+      </div>
+
+      <div class="attribute-section">
+        <div class="icon intelligence">
+          <img src="/vectors/icon-intelligence.svg" class="scaleLOL" alt="Intelligence Icon" />
+        </div>
+        <div class="value intelligence">
+          <p class="value-text">{animal.intelligence}/10</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 
 <style>
