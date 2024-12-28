@@ -1,4 +1,17 @@
 
+<script>
+	import ImgBoxSection from "$lib/components/ImgBoxSection.svelte";
+    import Stage from "$lib/components/Stage.svelte";
+</script>
 
-<h1>home</h1>
-<p>this is the home page.</p>
+
+<Stage />
+<ImgBoxSection />
+
+
+<style>
+    * {
+        margin: auto;
+        padding: 0px;
+    }
+</style>
