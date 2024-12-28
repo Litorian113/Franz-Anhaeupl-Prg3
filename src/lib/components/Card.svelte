@@ -11,13 +11,14 @@
   };
 
     // Funktion zur Ersetzung von Umlauten
-    function replaceUmlauts(str) {
+    function formatFilename(str) {
     return str
       .toLowerCase()
       .replace(/ä/g, "ae")
       .replace(/ö/g, "oe")
       .replace(/ü/g, "ue")
-      .replace(/ß/g, "ss");
+      .replace(/ß/g, "ss")
+      .replace(/\s+/g, "-"); // Ersetzt Leerzeichen durch Bindestriche
   }
 
   // Fallback, falls keine passende Gruppe gefunden wird
@@ -35,8 +36,7 @@
   </div>
 
   <div class="image-section">
-    <img src="/images/{replaceUmlauts(animal.name_german)}{animal.id < 10 ? `0${animal.id}` : animal.id}.webp" alt={animal.name} class="img-respo" />  </div>
-
+    <img src="/images/{formatFilename(animal.name_german)}{animal.id < 10 ? `0${animal.id}` : animal.id}.webp" alt={animal.name} class="img-respo" />
   <div class="trivia-section">
     <p class="trivia-style">{animal.trivia_german}</p>
   </div>
@@ -100,6 +100,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
 
@@ -178,6 +179,7 @@ p {
 .card-id {
  flex: 1;
  padding-left: 20px;
+ border-radius: 38px 0px 0px 0px;
 }
 
 .card-title {
