@@ -26,7 +26,6 @@
     justify-content: center;
     align-items: center;
     border-top: 1px solid #fff;
-    font-family: Helvetica, sans-serif;
     color: white;
 }
 

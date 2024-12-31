@@ -112,12 +112,6 @@
     --background-color:rgb(255, 255, 255);  
 }
 
-@font-face {
-    font-family: 'Jedi';
-    src: local('Jedi'), url('../fonts/Starjedi.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
 
 
 * {
@@ -139,7 +133,6 @@ p {
 }
 
 .trivia-style {
-    font-family: Helvetica, sans-serif;
     font-style: italic;
     font-weight: 100;
     text-align: center;
@@ -149,8 +142,6 @@ p {
 }
 
 .card-wrapper {
-    font-family: 'Jedi', sans-serif;
-
     backdrop-filter: blur(10px); /* Weichzeichner-Effekt */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     color: #fff;

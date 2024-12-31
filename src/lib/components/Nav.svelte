@@ -25,7 +25,6 @@
         justify-content: left;
         align-items: center;
         gap: 100px;
-        font-family:Helvetica, sans-serif;
         height: 80px;
         
     }
