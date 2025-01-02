@@ -1,116 +1,172 @@
 <script>
-    import { onMount } from 'svelte';
-    import { data } from '../../data/animalData.js';
-    import Card from '$lib/components/Card.svelte';
-  
-    let newAnimalName = '';
-    let generatedAnimal = null;
-    let imageUrl = '';
-    let errorMessage = '';
-  
-    // Platzhalterfunktion zur Generierung des Bildes
-    async function generateImage(animalName) {
-      console.log(`Bild für ${animalName} wird generiert...`);
-      // Platzhalter: Ersetze dies mit API-Aufruf
-      imageUrl = `/images/placeholder-${animalName}.webp`;
-    }
-  
-    // Platzhalterfunktion zur Generierung des Datensatzes
-    async function generateAnimalData(animalName) {
-      console.log(`Tierdaten für ${animalName} werden generiert...`);
-      // Platzhalter: Ersetze dies mit API-Aufruf
-      generatedAnimal = {
-        id: data.length + 1,
-        name_german: animalName,
-        trivia_german: `${animalName} ist ein faszinierendes Tier!`,
-        trivia: `${animalName} is a fascinating animal!`,
-        group: "F",
-        groupname_german: "Neue Tiere",
-        groupname: "New Animals",
-        group_number: 5,
-        name: animalName,
-        max_weight: Math.floor(Math.random() * 500),
-        max_age: Math.floor(Math.random() * 100),
-        top_speed: Math.floor(Math.random() * 70),
-        deaths: Math.floor(Math.random() * 50),
-        max_length: Math.floor(Math.random() * 400),
-        litter_size: Math.floor(Math.random() * 10),
-        continents: "Global",
-        intelligence: Math.floor(Math.random() * 10)
-      };
-  
-      data.push(generatedAnimal);
-    }
-  
-    async function generateCard() {
-      if (!newAnimalName) {
-        errorMessage = 'Bitte gib einen Tiernamen ein';
-        return;
+  import { onMount } from 'svelte';
+  import { data } from '../../data/animalData.js';
+  import Card from '$lib/components/Card.svelte';
+  import OpenAI from "openai";
+
+  const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+
+  const openai = new OpenAI({
+      apiKey,
+      dangerouslyAllowBrowser: true,
+  });
+
+  let newAnimalName = '';
+  let generatedAnimal = null;
+  let errorMessage = '';
+  let successMessage = '';
+
+  async function generateAnimalData(animalName) {
+      try {
+          console.log(`Tierdaten für ${animalName} werden generiert...`);
+
+          const completion = await openai.chat.completions.create({
+              model: "gpt-4o",
+              messages: [
+                  {
+                      role: "user",
+                      content: `Erstelle eine kurze Beschreibung und passende Werte für das Tier '${animalName}'.
+                      Das Ergebnis muss im JSON-Format mit den Feldern sein:
+                      {
+                          "name_german": "Tiername auf Deutsch",
+                          "trivia_german": "Kurze Trivia (maximal 120 Zeichen)",
+                          "max_weight": Zahl,
+                          "max_age": Zahl,
+                          "top_speed": Zahl,
+                          "deaths": Zahl,
+                          "max_length": Zahl,
+                          "intelligence": Zahl
+                      }
+                      Die Trivia darf maximal 120 Zeichen lang sein. Gib keine Einheiten wie kg, km/h oder Jahre an. Nur Zahlen!`,
+                  },
+              ],
+          });
+
+          const generatedText = completion.choices[0]?.message?.content;
+          const cleanText = generatedText.replace(/```json|```/g, '');
+          const animalData = JSON.parse(cleanText);
+
+          animalData.trivia_german = animalData.trivia_german.substring(0, 120);
+
+          const nextId = data.length + 1;
+          const lastGroup = data.length > 0 ? data[data.length - 1].group : "A";
+          const nextGroup = determineNextGroup(lastGroup, nextId);
+
+          generatedAnimal = {
+              id: nextId,
+              ...animalData,
+              group: nextGroup,
+              groupname_german: "Neue Tiere",
+              groupname: "New Animals",
+              group_number: 5,
+          };
+
+      } catch (error) {
+          console.error("Fehler beim Abrufen der Daten:", error);
+          errorMessage = 'Es gab ein Problem mit der Tiergenerierung.';
       }
-  
+  }
+
+  function determineNextGroup(lastGroup, nextId) {
+      const groupLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const lastGroupIndex = groupLetters.indexOf(lastGroup);
+
+      if (nextId % 4 === 1) {
+          return groupLetters[lastGroupIndex + 1] || "A";
+      }
+      return lastGroup;
+  }
+
+  async function generateCard() {
+      if (!newAnimalName) {
+          errorMessage = 'Bitte gib einen Tiernamen ein';
+          return;
+      }
+
       errorMessage = '';
-      await generateImage(newAnimalName);
+      successMessage = '';
       await generateAnimalData(newAnimalName);
-  
       newAnimalName = '';
-    }
-  
-    function formatFilename(str) {
-      return str
-        .toLowerCase()
-        .replace(/ä/g, 'ae')
-        .replace(/ö/g, 'oe')
-        .replace(/ü/g, 'ue')
-        .replace(/ß/g, 'ss')
-        .replace(/\s+/g, '-');
-    }
-  </script>
-  
-  <main>
-    <h1>Erstelle eine neue Tierkarte</h1>
-    <div class="form-section">
+  }
+
+  function addToCollection() {
+      if (generatedAnimal) {
+          data.push(generatedAnimal);
+          successMessage = `${generatedAnimal.name_german} wurde zur Kollektion hinzugefügt!`;
+          generatedAnimal = null;
+      }
+  }
+
+  function deleteGeneratedCard() {
+      generatedAnimal = null;
+      errorMessage = 'Die generierte Karte wurde gelöscht. Erstelle eine neue Karte!';
+  }
+</script>
+
+<main>
+  <h1>Erstelle eine neue Tierkarte</h1>
+  <div class="form-section">
       <input type="text" bind:value={newAnimalName} placeholder="Tiername eingeben..." />
       <button on:click={generateCard}>Karte generieren</button>
       {#if errorMessage}
-        <p class="error">{errorMessage}</p>
+          <p class="error">{errorMessage}</p>
       {/if}
-    </div>
-  
-    {#if generatedAnimal}
+      {#if successMessage}
+          <p class="success">{successMessage}</p>
+      {/if}
+  </div>
+
+  {#if generatedAnimal}
       <h2>Deine generierte Karte:</h2>
       <Card animal={generatedAnimal} />
+      <div class="button-section">
+          <button class="delete" on:click={deleteGeneratedCard}>Löschen</button>
+          <button class="add" on:click={addToCollection}>Hinzufügen zur Kollektion</button>
+      </div>
+  {/if}
+</main>
 
-    {/if}
-  </main>
-  
-  <style>
-    main {
+<style>
+  main {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 20px;
-    }
-    .form-section {
+  }
+  .form-section {
       margin: 20px 0;
       display: flex;
       gap: 10px;
-    }
-    input {
+  }
+  .button-section {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+  }
+  input {
       padding: 10px;
       font-size: 16px;
-    }
-    button {
+  }
+  button {
       padding: 10px 20px;
       font-size: 16px;
-      background-color: #2a9d8f;
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-    }
-    .error {
+  }
+  .delete {
+      background-color: #e63946;
+  }
+  .add {
+      background-color: #2a9d8f;
+  }
+  .error {
       color: red;
-    }
-  </style>
-  
+  }
+  .success {
+      color: green;
+  }
+</style>
