@@ -23,6 +23,22 @@
 
   // Fallback, falls keine passende Gruppe gefunden wird
   const groupColor = groupColors[animal.group_number] || "#6d6875";
+
+
+
+  async function deleteCard() {
+    const response = await fetch(`/api/cards/${animal._id}`, {
+    method: 'DELETE'
+    });
+
+
+      if (response.ok) {
+          console.log('Karte erfolgreich gelöscht');
+          location.reload();  // Aktualisiert die Seite nach dem Löschen
+      } else {
+          console.error('Fehler beim Löschen der Karte');
+      }
+  }
 </script>
 
 <div class="card-wrapper">
@@ -101,12 +117,33 @@
     </div>
   </div>
 </div>
+  <!-- Löschen-Button -->
+  {#if animal.isCustom}
+    <div class="delete-button">
+      <button on:click={deleteCard}>Karte löschen</button>
+    </div>
+  {/if}
 </div>
 
 
 
 
 <style>
+
+.delete-button {
+    margin-top: 15px;
+    text-align: center;
+  }
+  .delete-button button {
+    background-color: #e63946;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+
 :root {
     --dark-color: #181818;
     --background-color:rgb(255, 255, 255);  
