@@ -62,8 +62,8 @@
   }
 </script>
 
-<div class="card-wrapper" tabindex="0" role="button" on:click={flipCard} on:keypress={handleKeyPress}>
-  <div class="card-inner {isFlipped ? 'flipped' : ''}">
+<div class="card-wrapper">
+  <div class="card-inner {isFlipped ? 'flipped' : ''}" >
     <!-- Vorderseite der Karte -->
     <div class="card-front">
       <div class="top-section">
@@ -74,7 +74,7 @@
           <p>{animal.name_german}</p>
         </div>
       </div>
-      <div class="image-section">
+      <div class="image-section" on:click={flipCard} tabindex="0" role="button" on:keypress={handleKeyPress}>
         <img src="/images/{formatFilename(animal.name_german)}{animal.id < 10 ? `0${animal.id}` : animal.id}.webp" 
              alt={animal.name} 
              class="img-respo" />
@@ -142,15 +142,17 @@
     </div>
 
     <!-- Rückseite der Karte -->
-    <div class="card-back">
+    <div class="card-back" on:click={flipCard} tabindex="0" role="button" on:keypress={handleKeyPress}>
       <img src="/images/card-back.webp" alt="Kartenrückseite" class="img-back" />
     </div>
   </div>
 
   {#if animal.isCustom}
-    <div class="delete-button">
-      <button on:click={deleteCard}>Karte löschen</button>
-    </div>
+  <div class="delete-button">
+    <button class="delete-button" on:click={deleteCard} on:keypress={handleKeyPress} aria-label="Karte löschen">
+      Karte löschen
+    </button>
+  </div>
   {/if}
 </div>
 
@@ -161,6 +163,7 @@
   .delete-button {
       margin-top: 15px;
       text-align: center;
+      
   }
   .delete-button button {
       background-color: #e63946;
