@@ -161,7 +161,7 @@
 
 <style>
   .delete-button {
-      margin-top: 15px;
+      margin-top: 3px;
       text-align: center;
       
   }
