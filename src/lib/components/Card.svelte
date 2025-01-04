@@ -13,9 +13,9 @@
     H: "#1E88E5",   // Gelb
     I: "#8BC34A",   // Gelb
     J: "#E91E63",   // Gelb
-    J: "#FF6F61",   // Gelb
-    J: "#3F51B5",   // Gelb
-    J: "#F4A460"   // Gelb
+    K: "#FF6F61",   // Gelb
+    L: "#3F51B5",   // Gelb
+    M: "#F4A460"   // Gelb
   };
 
     // Funktion zur Ersetzung von Umlauten
