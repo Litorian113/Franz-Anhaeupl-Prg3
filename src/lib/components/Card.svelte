@@ -3,11 +3,19 @@
 
   // Farbzuordnung für Gruppen
   const groupColors = {
-    1: "#e63946",  // Rot
-    2: "#f4a261",  // Orange
-    3: "#2a9d8f",  // Grün
-    4: "#264653",  // Dunkelblau
-    5: "#e9c46a"   // Gelb
+    A: "#FF5733",  // Rot
+    B: "#33A1FF",  // Orange
+    C: "#FFC300",  // Grün
+    D: "#C70039",  // Dunkelblau
+    E: "#6A1B9A",   // Gelb
+    F: "#00B894",   // Gelb
+    G: "#D84315",   // Gelb
+    H: "#1E88E5",   // Gelb
+    I: "#8BC34A",   // Gelb
+    J: "#E91E63",   // Gelb
+    J: "#FF6F61",   // Gelb
+    J: "#3F51B5",   // Gelb
+    J: "#F4A460"   // Gelb
   };
 
     // Funktion zur Ersetzung von Umlauten
@@ -22,7 +30,7 @@
   }
 
   // Fallback, falls keine passende Gruppe gefunden wird
-  const groupColor = groupColors[animal.group_number] || "#6d6875";
+  const groupColor = groupColors[animal.group] || "#6d6875";
 
 
 
