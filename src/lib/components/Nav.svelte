@@ -7,7 +7,6 @@
 	    <a href="/">Home</a>
 	    <a href="/collection">Collection</a>
         <a href="/generate">Generate</a>
-        <a href="/test">test</a>
     </div>
     <div class="nav-right">
         <p>|</p>
