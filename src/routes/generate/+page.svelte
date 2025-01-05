@@ -130,10 +130,10 @@
         newAnimalName = '';
     }
   </script>
-  
+  <div class="wrapper">
   <main>
-    <h1>Erstelle eine neue Tierkarte</h1>
     <div class="form-section">
+        <h1>Erstelle eine neue Tierkarte</h1>
         <input type="text" bind:value={newAnimalName} placeholder="Tiername eingeben..." />
         <button on:click={generateCard}>Karte generieren</button>
         {#if errorMessage}
@@ -153,8 +153,13 @@
         </div>
     {/if}
   </main>
+</div>
   
   <style>
+
+    .wrapper {
+        height: ma;
+    }
     main {
         display: flex;
         flex-direction: column;
@@ -163,9 +168,12 @@
         padding: 20px;
     }
     .form-section {
-        margin: 20px 0;
+        display: flex;
+        flex-direction: column;
+        margin-top: 100px;
         display: flex;
         gap: 10px;
+        height: 700px;
     }
     .button-section {
         display: flex;

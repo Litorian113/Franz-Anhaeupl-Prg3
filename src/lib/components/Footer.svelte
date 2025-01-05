@@ -25,7 +25,6 @@
     background-color: rgb(35, 35, 35);
     justify-content: center;
     align-items: center;
-    border-top: 1px solid #fff;
     color: white;
 }
 
@@ -36,6 +35,8 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
+
+
 }
 
 .footer-left-section {

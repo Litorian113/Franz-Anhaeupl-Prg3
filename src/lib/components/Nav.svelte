@@ -32,12 +32,15 @@
 
     nav {
         display: flex;
-        background-color: #6f4b25;
+        background-color: #000000a0;
         margin: auto;
         padding: 0px;
         color: white;
         font-size: 25px;
         align-items: center;
+        position: fixed;
+        width: 100%;
+        z-index: 3;
 
         
     }
