@@ -101,7 +101,7 @@
                 });
   
                 if (response.ok) {
-                    successMessage = `${generatedAnimal.name_german} wurde zur Kollektion hinzugefügt!`;
+                    successMessage = `${generatedAnimal.name_german} added to your collection!`;
                     generatedAnimal = null;
                 } else {
                     const errorData = await response.json();
@@ -115,12 +115,12 @@
   
     function deleteGeneratedCard() {
         generatedAnimal = null;
-        errorMessage = 'Die generierte Karte wurde gelöscht. Erstelle eine neue Karte!';
+        errorMessage = 'deleted card, feel free to create a new one.';
     }
   
     async function generateCard() {
         if (!newAnimalName) {
-            errorMessage = 'Bitte gib einen Tiernamen ein';
+            errorMessage = 'please enter an animals name.';
             return;
         }
   
@@ -133,9 +133,12 @@
   <div class="wrapper">
   <main>
     <div class="form-section">
-        <h1>Erstelle eine neue Tierkarte</h1>
-        <input type="text" bind:value={newAnimalName} placeholder="Tiername eingeben..." />
-        <button on:click={generateCard}>Karte generieren</button>
+        <h1 class="main-header">create your own <br> 
+            animal card</h1>
+        <div class="button-area">
+        <input type="text" bind:value={newAnimalName} placeholder="type your animals name here" />
+        <button id="generate" on:click={generateCard}>generate</button>
+        </div>
         {#if errorMessage}
             <p class="error">{errorMessage}</p>
         {/if}
@@ -148,14 +151,28 @@
         <h2>Deine generierte Karte:</h2>
         <Card animal={generatedAnimal} />
         <div class="button-section">
-            <button class="delete" on:click={deleteGeneratedCard}>Löschen</button>
-            <button class="add" on:click={addToCollection}>Hinzufügen zur Kollektion</button>
+            <button class="delete" on:click={deleteGeneratedCard}>delete</button>
+            <button class="add" on:click={addToCollection}>add to collection</button>
         </div>
     {/if}
   </main>
 </div>
   
   <style>
+
+    .button-area {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .main-header {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        font-size: 64px;
+        line-height: 55px;
+        color: #2C2A2D;
+    }
 
     .wrapper {
         height: ma;
@@ -168,12 +185,14 @@
         padding: 20px;
     }
     .form-section {
-        display: flex;
+        flex: 1;
         flex-direction: column;
         margin-top: 100px;
         display: flex;
         gap: 10px;
-        height: 700px;
+        width: 100%;
+        align-items: center;
+        padding-bottom: 20px;
     }
     .button-section {
         display: flex;
@@ -184,7 +203,30 @@
     input {
         padding: 10px;
         font-size: 16px;
+        color: #2C2A2D;
+        background-color: #E0E4DC;
+        cursor: pointer;
+        border-style:solid;
+        border: none;             
+        border-bottom: 2px solid #7e7e7e;
+        width: 270px;
     }
+
+    input:focus {
+    outline: none;  /* Entfernt den blauen Rahmen */
+    border-bottom: 2px solid #2C2A2D;  /* Optional: Linie unten ändern */
+    }
+    #generate {
+        padding: 12px 45px 12px 45px;
+        font-size: 16;
+        color: #C4191F;
+        border: #C4191F;
+        border-style:solid;
+        border-radius: 15px;
+        cursor: pointer;
+        background-color: #E0E4DC;
+    }
+
     button {
         padding: 10px 20px;
         font-size: 16px;
@@ -194,16 +236,26 @@
         cursor: pointer;
     }
     .delete {
-        background-color: #e63946;
+        background-color: #C4191F;
+        border-radius: 15px;
+        padding: 12px 45px 12px 45px;
+        border: #C4191F;
+        border-style:solid;
+        background-color: transparent;
+        color: #C4191F;
     }
     .add {
-        background-color: #2a9d8f;
+        background-color: #2C2A2D;
+        border-radius: 15px;
+        padding: 12px 45px 12px 45px;
+        border: #2C2A2D;
+        border-style:solid;
     }
     .error {
-        color: red;
+        color: #C4191F;
     }
     .success {
-        color: green;
+        color: #2C2A2D;
     }
   </style>
   
