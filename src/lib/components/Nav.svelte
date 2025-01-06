@@ -4,13 +4,13 @@
 <nav>
     <div id="content-wrapper">
     <div class="nav-left">
-	    <a href="/">Home</a>
-	    <a href="/collection">Collection</a>
-        <a href="/generate">Generate</a>
+	    <a href="/">home</a>
+	    <a href="/collection">collection</a>
+        <a href="/generate">generate</a>
     </div>
     <div class="nav-right">
         <p>|</p>
-        <a href="/play">Play</a>
+        <a href="/play">play</a>
     </div>
 </div>
 </nav>
@@ -30,28 +30,30 @@
     }
 
     nav {
-        display: flex;
-        background-color: #000000a0;
-        margin: auto;
-        padding: 0px;
-        color: white;
-        font-size: 25px;
-        align-items: center;
-        position: fixed;
-        width: 100%;
-        z-index: 3;
-
-        
-    }
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    display: flex;
+    margin: auto;
+    padding: 0px;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    background-color: rgba(224, 228, 220, 1);   /* 30% Transparenz */
+    z-index: 3;
+    background: linear-gradient(to bottom, #E0E4DC, transparent);
+    /* box-shadow: 0 10px 8px rgba(224, 228, 220, 0.7);   */
+}
     a {
-        color: white;
         text-decoration: none;
+        color: #2C2A2D;
     }
 
     .nav-left {
         display: flex;
         flex: 1;
-        gap: 30px;
+        gap: 40px;
+        color: #2C2A2D;
     }
 
     .nav-right {
@@ -61,5 +63,6 @@
         justify-content: center;
         align-items: center;
         gap: 10px;
+        color: #C4191F;
     }
 </style>
