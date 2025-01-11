@@ -146,6 +146,11 @@
             <p class="success">{successMessage}</p>
         {/if}
     </div>
+    {#if !generatedAnimal}
+    <div class="card-placeholder">
+        <p>your card will appear</p>
+    </div>
+{/if}
   
     {#if generatedAnimal}
         <h2>Deine generierte Karte:</h2>
@@ -159,6 +164,19 @@
 </div>
   
   <style>
+
+.card-placeholder {
+    width: 380px;
+    height: 666px;
+    border: 3px dashed #7e7e7e;
+    border-radius: 20px;
+    margin: 40px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7e7e7e;
+    font-size: 18px;
+}
 
     .button-area {
         display: flex;
@@ -205,7 +223,7 @@
         font-size: 16px;
         color: #2C2A2D;
         background-color: #E0E4DC;
-        cursor: pointer;
+        cursor: auto;
         border-style:solid;
         border: none;             
         border-bottom: 2px solid #7e7e7e;
@@ -217,15 +235,42 @@
     border-bottom: 2px solid #2C2A2D;  /* Optional: Linie unten ändern */
     }
     #generate {
-        padding: 12px 45px 12px 45px;
-        font-size: 16;
-        color: #C4191F;
-        border: #C4191F;
-        border-style:solid;
-        border-radius: 15px;
-        cursor: pointer;
-        background-color: #E0E4DC;
-    }
+    padding: 12px 45px;
+    font-size: 16px;
+    color: #C4191F;
+    border: 2px solid #C4191F;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: #E0E4DC;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+#generate::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #C4191F;
+    z-index: -1;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+#generate:hover::before {
+    transform: translateX(0);
+}
+
+#generate:hover {
+    color: #E0E4DC;
+    border-color: #C4191F;
+}
+
+
 
     button {
         padding: 10px 20px;
@@ -237,20 +282,55 @@
     }
     .delete {
         background-color: #C4191F;
-        border-radius: 15px;
-        padding: 12px 45px 12px 45px;
-        border: #C4191F;
-        border-style:solid;
-        background-color: transparent;
-        color: #C4191F;
-    }
-    .add {
-        background-color: #2C2A2D;
+        font-size: 16;
         border-radius: 15px;
         padding: 12px 45px 12px 45px;
         border: #2C2A2D;
         border-style:solid;
+        background-color: transparent;
+        color: #2C2A2D;
+        opacity: 0.6;
+        transition: opacity 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     }
+
+    .delete:hover {
+        opacity: 1;
+    }
+    .add {
+    background-color: transparent;
+    color: #C4191F;
+    font-size: 16px;
+    border-radius: 15px;
+    padding: 12px 45px;
+    border: 2px solid #C4191F;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.add::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #C4191F;
+    z-index: -1;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.add:hover::before {
+    transform: translateX(0);
+}
+
+.add:hover {
+    color: #E0E4DC;
+    border-color: #C4191F;
+}
+
     .error {
         color: #C4191F;
     }
