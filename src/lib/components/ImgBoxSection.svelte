@@ -3,49 +3,55 @@
 
 </script>
 
-
+<div class="wrapper">
 <div class="heading-section">
 
-    <h1>die welt von quattera</h1>
+    <h1>wolrd of <br> quattera</h1>
 </div>
 
 <div class="infocard-section">
     <div class="infocard1">
-        <img src="../vectors/icon1.svg" class="bild" alt="Icon eins">
-        <h3>fantastisches universum von quatteria</h3>
+        <h3>generate your own cards</h3>
         <p>
-            tauche ein in das fantastische universum von quatteria und entdecke legendäre Karten, die nur auf dich
-            warten!
+            Discover the thrill of creating unique animal cards with ease! Simply enter the name of an animal, and our AI will generate a card complete with stats, trivia, and a beautiful design. Perfect for building your own custom collection or expanding the game universe.
         </p>
     </div>
 
     <div class="infocard1">
-        <img src="../vectors/icon2.svg" class="bild" alt="Icon eins">
-        <h3>erkunde neue orte</h3>
+        <h3>discover the game hub</h3>
         <p>
-            begib dich auf eine reise und entdecke geheimnisvolle orte voller mächtiger karten. jeder ort birgt neue
-            herausforderungen!
+            Step into the fun with our interactive game hub! Play Memory to test your matching skills or challenge yourself with classic card games like Quartett. Every game uses your custom cards, creating a personalized and engaging experience every time.
         </p>
     </div>
 
     <div class="infocard1">
-        <img src="../vectors/icon3.svg" class="bild" alt="Icon eins">
-        <h3>eigene karten erstellen</h3>
+        
+        <h3>harness the power of ai</h3>
         <p>
-            bald verfügbar: erstelle deine eigenen karten und erweitere das universum von quatteria mit deiner
-            kreativität!
+            Unleash the potential of AI to bring your creativity to life! Our intelligent system generates high-quality animal cards based on your input, blending technology and imagination to produce results that feel truly magical.
         </p>
     </div>
 
+</div>
 </div>
 
 
 <style>
 
+    h1 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 80px;
+        line-height: 70px;
+        
+
+    }
+
+    p {
+        font-family: Arial, Helvetica, sans-serif;
+    }
 .heading-section {
     display: flex;
     flex-direction: row;
-    height: 150px;
     justify-content: center;
     align-items: center;
 }
@@ -58,7 +64,8 @@
     align-items: center;
     gap: 40px;
     flex-wrap: wrap;
-    padding-bottom: 110px;
+
+
 }
 
 .infocard1 {
@@ -69,14 +76,10 @@
     align-items: center;
 }
 
-.bild {
-    display: flex;
-    width: 50%;
-    padding-bottom: 40px;
-}
 
 h3 {
-    color: #FFE81F;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #C4191F;
     width: 100%;
 }
 
