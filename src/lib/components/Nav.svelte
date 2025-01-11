@@ -44,10 +44,31 @@
     background: linear-gradient(to bottom, #E0E4DC, transparent);
     /* box-shadow: 0 10px 8px rgba(224, 228, 220, 0.7);   */
 }
-    a {
-        text-decoration: none;
-        color: #2C2A2D;
-    }
+a {
+    text-decoration: none;
+    color: #2C2A2D; /* Standard: Schwarz */
+    position: relative;
+    font-size: 22px;
+    font-weight: 600;
+    transition: color 0.3s ease; /* Animiert die Textfarbe */
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px; /* Abstand unter dem Text */
+    width: 0;
+    height: 4px;
+    background-color: #C4191F; /* Rote Linie */
+    transition: width 0.3s ease; /* Animiert die Breite der Linie */
+}
+
+
+a:hover::after {
+    width: 100%; /* Linie breitet sich über die gesamte Breite des Links aus */
+}
+
 
     .nav-left {
         display: flex;

@@ -148,7 +148,7 @@
     </div>
     {#if !generatedAnimal}
     <div class="card-placeholder">
-        <p>your card will appear</p>
+        <p>your card will appear here</p>
     </div>
 {/if}
   

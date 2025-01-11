@@ -3,84 +3,112 @@
 
 </script>
 
-<div class="wrapper">
-<div class="heading-section">
-
-    <h1>wolrd of <br> quattera</h1>
-</div>
-
-<div class="infocard-section">
-    <div class="infocard1">
-        <h3>generate your own cards</h3>
-        <p>
-            Discover the thrill of creating unique animal cards with ease! Simply enter the name of an animal, and our AI will generate a card complete with stats, trivia, and a beautiful design. Perfect for building your own custom collection or expanding the game universe.
-        </p>
+<div class="info-container">
+    <div class="heading-section">
+        <h1>welcome to the wild <br> world of quattera.</h1>
     </div>
 
-    <div class="infocard1">
-        <h3>discover the game hub</h3>
-        <p>
-            Step into the fun with our interactive game hub! Play Memory to test your matching skills or challenge yourself with classic card games like Quartett. Every game uses your custom cards, creating a personalized and engaging experience every time.
-        </p>
+    <div class="infocard-section">
+        <div class="infocard">
+            <div class="heading-area">
+                <h3>generate your own cards</h3>
+            </div>
+            <div class="text-area">
+                <p>
+                    Discover the thrill of creating unique animal cards with ease! Simply enter the name of an animal,
+                    and our AI will generate a card complete with stats, trivia, and a beautiful design. Perfect for
+                    building your own custom collection or expanding the game universe.
+                </p>
+            </div>
+        </div>
+
+        <div class="infocard">
+            <div class="heading-area">
+                <h3>discover the game hub</h3>
+            </div>
+            <div class="text-area">
+                <p>
+                    Step into the fun with our interactive game hub! Play Memory to test your matching skills or
+                    challenge yourself with classic card games like Quartett. Every game uses your custom cards,
+                    creating a personalized and engaging experience every time.
+                </p>
+            </div>
+        </div>
+
+        <div class="infocard">
+            <div class="heading-area">
+                <h3>explore your animal collection</h3>
+            </div>
+            <div class="text-area">
+                <p>
+                    Discover and browse your personalized animal cards! The collection page lets you uncover fascinating details about both familiar and rare animals. Explore their unique traits, stats, and trivia in an organized and enjoyable way.
+                </p>
+            </div>
+        </div>
     </div>
-
-    <div class="infocard1">
-        
-        <h3>harness the power of ai</h3>
-        <p>
-            Unleash the potential of AI to bring your creativity to life! Our intelligent system generates high-quality animal cards based on your input, blending technology and imagination to produce results that feel truly magical.
-        </p>
-    </div>
-
 </div>
-</div>
-
 
 <style>
+    * {
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-    h1 {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 80px;
-        line-height: 70px;
-        
 
-    }
-
-    p {
-        font-family: Arial, Helvetica, sans-serif;
-    }
-.heading-section {
+.info-container {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    gap: 20px; /* Abstand zwischen der Überschrift und den Karten */
+    padding: 20px;
+}
+
+.heading-section h1 {
+    font-size: 96px;
+    font-weight: 800;
+    color: #C4191F;
+    line-height: 90%;
+    margin: 0;
+    padding-left: 6%;
+    padding-top: 80px;
+    padding-bottom: 60px;
+    text-align: left; /* Links ausgerichtet */
 }
 
 .infocard-section {
     display: flex;
-    flex-direction: row;
-    height: auto;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
-
-
+    flex-wrap: wrap; /* Ermöglicht den automatischen Umbruch in die nächste Zeile */
+    gap: 50px; /* Abstand zwischen den Karten */
+    justify-content: center; /* Zentriert die Karten innerhalb des Containers */
+    padding: 20px;
 }
 
-.infocard1 {
-    display: flex;
-    flex-direction: column;
-    height: 400px;
-    width: 300px;
-    align-items: center;
+.infocard {
+    flex: 1 1 calc(33.333% - 20px); /* Passt die Breite der Karten an: Ein Drittel bei drei Karten pro Reihe */
+    max-width: 400px; /* Maximale Breite für jede Karte */
+    min-width: 250px; /* Mindestbreite, bevor sie umbrechen */
+    background-color: #E0E4DC; /* Heller Hintergrund für die Karten */
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    border-style: solid;
+    border: none;
+    border-left: 12px solid #C4191F;
 }
 
-
-h3 {
-    font-family: Arial, Helvetica, sans-serif;
+.heading-area h3 {
+    font-size: 32px;
     color: #C4191F;
-    width: 100%;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-top: 0px;
+}
+
+.text-area p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    text-align: left;
+    margin-bottom: 0px;
+    text-transform: lowercase;
 }
 
 </style>
