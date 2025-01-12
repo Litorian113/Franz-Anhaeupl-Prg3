@@ -64,12 +64,12 @@
 .heading-section h1 {
     font-size: 96px;
     font-weight: 800;
-    color: #C4191F;
+    color: #2C2A2D;
     line-height: 90%;
     margin: 0;
     padding-left: 6%;
-    padding-top: 80px;
-    padding-bottom: 60px;
+    padding-top: 40px;
+    padding-bottom: 100px;
     text-align: left; /* Links ausgerichtet */
 }
 
