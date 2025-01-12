@@ -96,7 +96,7 @@
 
 .heading-area h3 {
     font-size: 32px;
-    color: #C4191F;
+    color: #2C2A2D;
     margin-bottom: 10px;
     text-align: left;
     margin-top: 0px;
