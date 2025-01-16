@@ -166,16 +166,16 @@
   <style>
 
 .card-placeholder {
-    width: 380px;
-    height: 666px;
+    width: 285px; /* Breite der Karte (380px) * 0.75 */
+    height: 500px; /* Höhe der Karte (666px) * 0.75 */
     border: 3px dashed #7e7e7e;
-    border-radius: 20px;
-    margin: 40px auto;
+    border-radius: 15px; /* Angepasst für kleinere Skalierung */
+    margin: 20px auto; /* Platzierung in der Mitte mit reduziertem Margin */
     display: flex;
     align-items: center;
     justify-content: center;
     color: #7e7e7e;
-    font-size: 18px;
+    font-size: 16px; /* Schriftgröße für kleinere Platzhalter */
 }
 
     .button-area {

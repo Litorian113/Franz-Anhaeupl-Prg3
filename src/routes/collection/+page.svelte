@@ -30,8 +30,8 @@
 <style>
   .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 5px;
     justify-items: center;
     margin-top: 100px;
   }

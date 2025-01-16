@@ -161,14 +161,16 @@
 
 <style>
   .delete-button {
-      margin-top: 3px;
+      margin-top: 1px;
       text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
       
   }
   .delete-button button {
       background-color: #e63946;
       color: white;
-      padding: 10px 20px;
+      padding: 15px 40px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
@@ -209,6 +211,12 @@
       width: 380px;
       height: 666px;
       perspective: 1000px;  /* Perspektive für Flip-Effekt */
+      transform: scale(0.75);
+      transform-origin: center center;
+      margin: 0;
+      padding: 0;
+      margin-top: -40px; /* Kompensiert den leeren Platz oben */
+      margin-bottom: -60px; /* Kompensiert den leeren Platz unten */
   }
   
   .card-inner {
@@ -225,6 +233,7 @@
   
   .card-inner.flipped {
       transform: rotateY(180deg);
+      
   }
   
   .card-front,
