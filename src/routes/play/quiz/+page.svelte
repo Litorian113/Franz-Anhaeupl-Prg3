@@ -126,7 +126,7 @@
 
 {#if !showQuiz && !showLeaderboard}
 <div class="start-screen">
-    <h1 class="main-header">welcome to <br> the quiz</h1>
+    <h1 class="main-header">welcome to test <br> the quiz</h1>
     <div class="gameStart">
     <input type="text" placeholder="enter your name" bind:value={playerName} />
     <button id="generate" on:click={startQuiz} disabled={!playerName}>start quiz</button>
