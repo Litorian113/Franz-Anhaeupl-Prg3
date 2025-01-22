@@ -232,7 +232,7 @@
 
     input:focus {
     outline: none;  /* Entfernt den blauen Rahmen */
-    border-bottom: 2px solid #2C2A2D;  /* Optional: Linie unten ändern */
+    border-bottom: 2px solid #C4191F;  /* Optional: Linie unten ändern */
     }
     #generate {
     padding: 12px 45px;

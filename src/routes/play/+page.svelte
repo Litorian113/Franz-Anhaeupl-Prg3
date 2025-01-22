@@ -1,8 +1,8 @@
 <script>
     const games = [
-      { name: "Memorie", path: "/play/memorie" },
-      { name: "Trumpfquartett", path: "/play/trumpfquartett" },
-      { name: "Quartett", path: "/play/quartett" }
+      { name: "memory", path: "/play/memorie" },
+      { name: "top trumps", path: "/play/trumpfquartett" },
+      { name: "quiz", path: "/play/quiz" }
     ];
   </script>
   

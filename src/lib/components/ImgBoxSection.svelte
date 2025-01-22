@@ -59,6 +59,7 @@
     flex-direction: column;
     gap: 20px; /* Abstand zwischen der Überschrift und den Karten */
     padding: 20px;
+    height: 100vh;
 }
 
 .heading-section h1 {
@@ -79,6 +80,7 @@
     gap: 50px; /* Abstand zwischen den Karten */
     justify-content: center; /* Zentriert die Karten innerhalb des Containers */
     padding: 20px;
+    align-items: center;
 }
 
 .infocard {

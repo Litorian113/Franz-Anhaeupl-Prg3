@@ -65,69 +65,12 @@
                class="img-respo" />
         </div>
 
-        <div class="trivia-section">
-          <p class="trivia-style">{animal.trivia_german}</p>
-        </div>
   
-        <div class="main-section">
-          <div class="left-main-section">
-            <div class="attribute-section">
-              <div class="icon weight">
-                <img src="/vectors/icon-weight.svg" class="scaleLOL" alt="Gewicht Icon" />
-              </div>
-              <div class="value weight">
-                <p class="value-text">{animal.max_weight} kg</p>
-              </div>
-            </div>
-            <div class="attribute-section">
-              <div class="icon age">
-                <img src="/vectors/icon-stregth.svg" class="scaleLOL" alt="Alter Icon" />
-              </div>
-              <div class="value age">
-                <p class="value-text">{animal.max_age} Jahre</p>
-              </div>
-            </div>
-            <div class="attribute-section">
-              <div class="icon speed">
-                <img src="/vectors/icon-speed.svg" class="scaleLOL" alt="Geschwindigkeit Icon" />
-              </div>
-              <div class="value speed">
-                <p class="value-text">{animal.top_speed} km/h</p>
-              </div>
-            </div>
-          </div>
-  
-          <div class="right-main-section">
-            <div class="attribute-section">
-              <div class="icon length">
-                <img src="/vectors/icon-size.svg" class="scaleLOL" alt="Länge Icon" />
-              </div>
-              <div class="value length">
-                <p class="value-text">{animal.max_length} cm</p>
-              </div>
-            </div>
-            <div class="attribute-section">
-              <div class="icon death">
-                <img src="/vectors/icon-death.svg" class="scaleLOL" alt="Todesfälle Icon" />
-              </div>
-              <div class="value death">
-                <p class="value-text">{animal.deaths}</p>
-              </div>
-            </div>
-            <div class="attribute-section">
-              <div class="icon intelligence">
-                <img src="/vectors/icon-intelligence.svg" class="scaleLOL" alt="Intelligenz Icon" />
-              </div>
-              <div class="value intelligence">
-                <p class="value-text">{animal.intelligence}/10</p>
-              </div>
-            </div>
-          </div>
-        </div>
+
       </div>
   
       <!-- Rückseite der Karte -->
-      <div class="card-back" on:click={flipCard}>
+      <div class="card-back" on:click={flipCard} tabindex="0" role="button" on:keypress={handleKeyPress}>
         <img src="/images/card-back.webp" alt="Kartenrückseite" class="img-back" />
       </div>
   
@@ -136,31 +79,16 @@
   
   <style>
 
-.trivia-section {
-    display: flex;
-    border-top: 1px solid #fff;
-    margin-top: -5px;
-    background-color: #353535;
-    justify-content: center;
-    align-items: center;
-    min-height: 80px;
-    width: 100%;
-  }
 
-  .trivia-style {
-    font-style: italic;
-    text-align: center;
-    font-weight: 300;
-    line-height: 1.4;
-    margin: 0;
-  }
+
     .card-wrapper {
       color: #fff;
       background: rgba(198, 198, 198, 0.07); /* halbtransparentes Weiß */
       width: 380px;
-      height: 666px;
+      height: 400px;
       perspective: 1000px;  /* Perspektive für Flip-Effekt */
       border-radius: 40px;
+      /* transform: scale(0.5); */
     }
   
     .card-inner {
@@ -202,9 +130,10 @@
   
     .img-back {
       width: 100%;
-      max-width: 380px;
-      height: auto;
-      border-radius: 38px;
+    height: 100%;
+    object-fit: cover; /* Passt das Bild an, sodass es den Container vollständig ausfüllt */
+    object-position: center;
+    border-radius: 38px;
     }
   
     .image-section {
@@ -214,10 +143,13 @@
 
     .img-respo {
       width: 100%;
-    max-width: 380px;
-    height: auto;
-    max-height: 320px;
-    object-fit: fill;
+    height: 100%;
+    object-fit: cover; /* Passt das Bild an, sodass es den Container vollständig ausfüllt */
+    object-position: center;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 38px;
+    border-bottom-left-radius: 38px;
     }
   
     .top-section {
@@ -243,77 +175,6 @@
       border-radius: 0px 35px 0px 0px;
       font-size: 24px;
       font-weight: bold;
-    }
-  
-    .main-section {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      width: 90%;
-    }
-  
-    .left-main-section {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-  
-    .right-main-section {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-  
-    .attribute-section {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      margin: 5px 0;
-      border-radius: 40px;
-      transition: none;  /* Kein Hover-Effekt */
-    }
-  
-    .icon {
-      display: flex;
-      flex: 1;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba(72, 72, 72, 0.236);
-      margin: 5px;
-      border-radius: 100px;
-    }
-  
-    .icon img {
-      width: 30px;
-    }
-  
-    .value {
-      display: flex;
-      flex: 1;
-      justify-content: center;
-      align-items: center;
-    }
-  
-    .value-text {
-      margin-left: 10px;
-      font-size: 16px;
-    }
-  
-    .trivia-section {
-      display: flex;
-      border-top: 1px solid #fff;
-      margin-top: -5px;
-      background-color: #353535;
-      justify-content: center;
-      align-items: center;
-    }
-  
-    .trivia-style {
-      font-style: italic;
-      font-weight: 100;
-      text-align: center;
-      margin: 18px;
-      font-size: 16px;
     }
   </style>
   
