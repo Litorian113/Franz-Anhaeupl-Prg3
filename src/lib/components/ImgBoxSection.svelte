@@ -47,19 +47,102 @@
         </div>
     </div>
 </div>
+<div class="section-main">
+    <div>
+            <a href="/play" class="game-card">
+            <h2>to the gamehub</h2>
+            </a>
+    </div>
 
+
+</div>
 <style>
     * {
     font-family: Arial, Helvetica, sans-serif;
 }
 
 
-.info-container {
+
+
+.section-main {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Abstand zwischen der Überschrift und den Karten */
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    width: 100vw;
+    margin-top: 0px;
+    margin-bottom: 0px; /* Abstand zwischen den Sektionen */
+
+    background: url('../images/Background-Gamehub.jpg') no-repeat center center; /* Hintergrundbild hinzufügen */
+    background-size: contain; /* Bild soll den gesamten Container ausfüllen */
+    background-color: #E0E4DC;
+}
+
+.game-card {
+  width: 250px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f0; /* Heller Hintergrund */
+  color: #2c2a2d; /* Dunkler Text */
+  cursor: pointer;
+  border-radius: 5px;
+  position: relative; /* Für die Effekte */
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  overflow: hidden; /* Verhindert Überlauf der Animation */
+  border-bottom: 10px solid #c4191f; /* Default rote Linie am unteren Rand */
+  transition: color 0.3s ease; /* Sanfter Farbwechsel */
+  /* border: none; */
+}
+
+.game-card::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #c4191f;
+  z-index: 0; /* Legt es hinter den Text */
+  transform: translateY(100%); /* Startet außerhalb des Buttons */
+  transition: transform 0.3s ease; /* Sanfter Übergang */
+}
+
+.game-card:hover::before {
+  transform: translateY(0); /* Bewegt die rote Farbe nach oben */
+}
+
+.game-card:hover {
+  color: #f5f5f0; /* Textfarbe beim Hover auf Weiß ändern */
+  /* z-index: 1;
+  position: relative; */
+}
+
+.game-card > * {
+  position: relative;
+  z-index: 1; /* Text bleibt über der roten Farbe sichtbar */
+}
+
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+
+
+    .info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     padding: 20px;
-    height: 100vh;
+    height: auto; /* Passt sich dem Inhalt an */
+    align-items: center; /* Startet den Inhalt oben */
+    justify-content: center; /* Positioniert den Inhalt oben */
 }
 
 .heading-section h1 {
@@ -68,7 +151,6 @@
     color: #2C2A2D;
     line-height: 90%;
     margin: 0;
-    padding-left: 6%;
     padding-top: 40px;
     padding-bottom: 100px;
     text-align: left; /* Links ausgerichtet */
@@ -81,6 +163,8 @@
     justify-content: center; /* Zentriert die Karten innerhalb des Containers */
     padding: 20px;
     align-items: center;
+    margin-top: 70px;
+    margin-bottom: 70px;
 }
 
 .infocard {
@@ -112,5 +196,6 @@
     margin-bottom: 0px;
     text-transform: lowercase;
 }
+
 
 </style>
