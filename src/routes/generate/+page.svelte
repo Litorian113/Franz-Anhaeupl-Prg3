@@ -1,4 +1,6 @@
 <script>
+
+    import Footer from "$lib/components/Footer.svelte";
     import { onMount } from 'svelte';
     import Card from '$lib/components/Card.svelte';
     import OpenAI from "openai";
@@ -14,6 +16,9 @@
     let generatedAnimal = null;
     let errorMessage = '';
     let successMessage = '';
+
+    let isLoading = false;
+
   
     // Funktion zur Ermittlung der nächsten Gruppen-ID
     function determineNextGroup(lastGroup, nextId) {
@@ -29,64 +34,82 @@
   
     // Tierdaten generieren mit OpenAI
     async function generateAnimalData(animalName) {
-        try {
-            console.log(`Tierdaten für ${animalName} werden generiert...`);
-  
-            // OpenAI-Anfrage zur Generierung der Tierdaten
-            const completion = await openai.chat.completions.create({
-                model: "gpt-4o",
-                messages: [
+    try {
+        console.log(`Tierdaten für ${animalName} werden generiert...`);
+
+        // OpenAI-Anfrage zur Generierung der Tierdaten
+        const completion = await openai.chat.completions.create({
+            model: "gpt-4o",
+            messages: [
+                {
+                    role: "user",
+                    content: `Create a short description and suitable attributes for the animal '${animalName}'.
+                                The result must be in JSON format using the following fields:
                     {
-                        role: "user",
-                        content: `Erstelle eine kurze Beschreibung und passende Werte für das Tier '${animalName}'.
-                        Das Ergebnis muss im JSON-Format mit den Feldern sein:
-                        {
-                            "name_german": "Tiername auf Deutsch",
-                            "trivia_german": "Kurze Trivia (maximal 120 Zeichen)",
-                            "max_weight": Zahl,
-                            "max_age": Zahl,
-                            "top_speed": Zahl,
-                            "deaths": Zahl,
-                            "max_length": Zahl,
-                            "intelligence": Zahl
-                        }
-                        Die Trivia darf maximal 120 Zeichen lang sein. Gib keine Einheiten wie kg, km/h oder Jahre an. Nur Zahlen!`,
-                    },
-                ],
-            });
-  
-            const generatedText = completion.choices[0]?.message?.content;
-            const cleanText = generatedText.replace(/```json|```/g, '');
-            const animalData = JSON.parse(cleanText);
-  
-            animalData.trivia_german = animalData.trivia_german.substring(0, 120);
-  
-            // Karten aus der Datenbank abrufen, um höchste ID zu ermitteln
-            const response = await fetch('/api/cards');
-            const existingCards = await response.json();
-  
-            // Bestimme die höchste ID und die nächste verfügbare ID
-            const highestId = existingCards.reduce((max, card) => Math.max(max, card.id), 0);
-            const nextId = highestId + 1;
-  
-            // Bestimme die aktuelle Gruppe basierend auf den letzten vier Karten
-            const lastGroup = existingCards.length > 0 ? existingCards[existingCards.length - 1].group : "A";
-            const nextGroup = determineNextGroup(lastGroup, nextId);
-  
-            generatedAnimal = {
-                id: nextId,
-                ...animalData,
-                group: nextGroup,
-                groupname_german: "Neue Tiere",
-                groupname: "New Animals",
-                group_number: 5,
-            };
-  
-        } catch (error) {
-            console.error("Fehler beim Abrufen der Daten:", error);
-            errorMessage = 'Es gab ein Problem mit der Tiergenerierung.';
-        }
+                        "name_german": "Animal name in english",
+                        "trivia_german": "Short Trivia in english (120 characters maximum)",
+                        "max_weight": Zahl,
+                        "max_age": Zahl,
+                        "top_speed": Zahl,
+                        "deaths": Zahl,
+                        "max_length": Zahl,
+                        "intelligence": Zahl
+                    }
+                    Die Trivia darf maximal 120 Zeichen lang sein. Gib keine Einheiten wie kg, km/h oder Jahre an. Nur Zahlen!`,
+                },
+            ],
+        });
+
+        const generatedText = completion.choices[0]?.message?.content;
+        const cleanText = generatedText.replace(/```json|```/g, '');
+        const animalData = JSON.parse(cleanText);
+
+        // Generiere ein Bild für das Tier
+        const imageResponse = await openai.images.generate({
+            prompt: `A highly detailed, semi-realistic illustration of a ${animalName} in its natural environment.
+             The scene showcases the ${animalName} in a lifelike pose, with intricate details such as fur, scales, or feathers.
+              The environment is depicted with cinematic lighting, capturing a serene and atmospheric mood.
+               The background complements the habitat, such as lush savannahs for land animals,
+                vibrant coral reefs or deep oceans for aquatic animals, or dense forests for other species.
+                 The artistic style blends realism with soft illustrative elements, featuring rich, natural colors, dramatic lighting,
+                  and a focus on harmony between the animal and its surroundings.
+                   The composition emphasizes depth, texture, and balance, creating a visually stunning and immersive piece.
+`, 
+            n: 1,
+            size: "1024x1024"
+        });
+
+        const imageUrl = imageResponse.data[0].url; // Bild-URL aus der Antwort extrahieren
+
+        animalData.trivia_german = animalData.trivia_german.substring(0, 120);
+
+        // Karten aus der Datenbank abrufen, um höchste ID zu ermitteln
+        const response = await fetch('/api/cards');
+        const existingCards = await response.json();
+
+        // Bestimme die höchste ID und die nächste verfügbare ID
+        const highestId = existingCards.reduce((max, card) => Math.max(max, card.id), 0);
+        const nextId = highestId + 1;
+
+        // Bestimme die aktuelle Gruppe basierend auf den letzten vier Karten
+        const lastGroup = existingCards.length > 0 ? existingCards[existingCards.length - 1].group : "A";
+        const nextGroup = determineNextGroup(lastGroup, nextId);
+
+        generatedAnimal = {
+            id: nextId,
+            ...animalData,
+            imageUrl, // Füge die generierte Bild-URL hinzu
+            group: nextGroup,
+            groupname_german: "Neue Tiere",
+            groupname: "New Animals",
+            group_number: 5,
+        };
+
+    } catch (error) {
+        console.error("Fehler beim Abrufen der Daten:", error);
+        errorMessage = 'Es gab ein Problem mit der Tiergenerierung.';
     }
+}
   
     // Karte in die MongoDB-Datenbank speichern
     async function addToCollection() {
@@ -123,10 +146,11 @@
             errorMessage = 'please enter an animals name.';
             return;
         }
-  
+        isLoading = true; // Start Loader
         errorMessage = '';
         successMessage = '';
         await generateAnimalData(newAnimalName);
+        isLoading = false; 
         newAnimalName = '';
     }
   </script>
@@ -135,10 +159,17 @@
     <div class="form-section">
         <h1 class="main-header">create your own <br> 
             animal card</h1>
-        <div class="button-area">
-        <input type="text" bind:value={newAnimalName} placeholder="type your animals name here" />
-        <button id="generate" on:click={generateCard}>generate</button>
-        </div>
+            <div class="button-area">
+                <input type="text" bind:value={newAnimalName} placeholder="type your animals name here" />
+                <button id="generate" on:click={generateCard} disabled={isLoading}>
+                    {#if isLoading}
+                        <span class="loader"></span>
+                    {/if}
+                    {#if !isLoading}
+                        generate
+                    {/if}
+                </button>
+            </div>
         {#if errorMessage}
             <p class="error">{errorMessage}</p>
         {/if}
@@ -153,7 +184,7 @@
 {/if}
   
     {#if generatedAnimal}
-        <h2>Deine generierte Karte:</h2>
+        <h2>your generated card:</h2>
         <Card animal={generatedAnimal} />
         <div class="button-section">
             <button class="delete" on:click={deleteGeneratedCard}>delete</button>
@@ -162,8 +193,30 @@
     {/if}
   </main>
 </div>
+
+<Footer />
   
   <style>
+
+.loader {
+    border: 3px solid #f3f3f3; /* Light gray */
+    border-top: 3px solid #C4191F; /* Blue */
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+button:disabled {
+    opacity: 1;
+    cursor: not-allowed;
+}
 
 .card-placeholder {
     width: 285px; /* Breite der Karte (380px) * 0.75 */

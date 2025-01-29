@@ -27,6 +27,7 @@
   {/each}
 </div>
 
+
 <style>
   .card-grid {
     display: grid;
@@ -35,4 +36,5 @@
     justify-items: center;
     margin-top: 100px;
   }
+
 </style>

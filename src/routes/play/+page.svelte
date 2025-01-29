@@ -1,11 +1,13 @@
 <script>
+    import Footer from "$lib/components/Footer.svelte";
+
+
     const games = [
       { name: "memory", path: "/play/memorie" },
       { name: "top trumps", path: "/play/trumpfquartett" },
       { name: "quiz", path: "/play/quiz" }
     ];
   </script>
-  
   <main>
     <div class="heading-section">
     <h1>game hub</h1>
@@ -18,6 +20,8 @@
     {/each}
   </div>
   </main>
+
+  <Footer />
   
   <style>
 main {
@@ -52,6 +56,7 @@ main {
   overflow: hidden; /* Verhindert Überlauf der Animation */
   border-bottom: 10px solid #c4191f; /* Default rote Linie am unteren Rand */
   transition: color 0.3s ease; /* Sanfter Farbwechsel */
+  /* border: none; */
 }
 
 .game-card::before {
