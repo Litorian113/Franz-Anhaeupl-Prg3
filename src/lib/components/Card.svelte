@@ -60,6 +60,8 @@
       flipCard();
     }
   }
+
+  
 </script>
 
 <div class="card-wrapper">
@@ -68,16 +70,19 @@
     <div class="card-front">
       <div class="top-section">
         <div class="card-id" style="background-color: {groupColor};">
-          <p>id.{animal.id}</p>
+          <p>{animal.group} {animal.id}</p>
         </div>
         <div class="card-title">
           <p>{animal.name_german}</p>
         </div>
       </div>
       <div class="image-section" on:click={flipCard} tabindex="0" role="button" on:keypress={handleKeyPress}>
-        <img src="/images/{formatFilename(animal.name_german)}{animal.id < 10 ? `0${animal.id}` : animal.id}.webp" 
-             alt={animal.name} 
-             class="img-respo" />
+
+        <img src={animal.imageUrl || `/images/${formatFilename(animal.name_german)}${animal.id < 10 ? `0${animal.id}` : animal.id}.webp`} 
+            alt={animal.name_german} 
+           class="img-respo" />
+
+             
       </div>
 
       <div class="trivia-section">
@@ -99,7 +104,7 @@
               <img src="/vectors/icon-stregth.svg" class="scaleLOL" alt="Age Icon" />
             </div>
             <div class="value age">
-              <p class="value-text">{animal.max_age} Jahre</p>
+              <p class="value-text">{animal.max_age} years</p>
             </div>
           </div>
           <div class="attribute-section">
