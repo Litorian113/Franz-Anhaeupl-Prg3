@@ -52,7 +52,7 @@
         
         <div class="top-section">
           <div class="card-id" style="background-color: {groupColor};">
-            <p>id.{animal.id}</p>
+            <p>{animal.group} {animal.id}</p>
           </div>
           <div class="card-title">
             <p>{animal.name_german}</p>
@@ -60,9 +60,9 @@
         </div>
   
         <div class="image-section">
-          <img src="/images/{formatFilename(animal.name_german)}{animal.id < 10 ? `0${animal.id}` : animal.id}.webp" 
-               alt={animal.name} 
-               class="img-respo" />
+          <img src={animal.imageUrl || `/images/${formatFilename(animal.name_german)}${animal.id < 10 ? `0${animal.id}` : animal.id}.webp`} 
+            alt={animal.name_german} 
+            class="img-respo" />
         </div>
 
   
