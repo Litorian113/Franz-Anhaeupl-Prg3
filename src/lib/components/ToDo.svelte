@@ -10,18 +10,9 @@ TODO2:
 Favicon hinzufügen
 
 
-TODO3:
-Home - benötigt to the gamehub button
-
-TODO4:
-Footer überarbeiten
-
 TODO5:
 collection filter functions
 
-TODO6:
-playhub designen und hübsch machen vielleicht npm ding aus 
-whatsapp benutzen
 
 TODO7: 
 Proxy für API aufsetzen
@@ -34,18 +25,15 @@ Icons auf Karten anpassen und korrigieren
 - zudem Bug FIX bei zweizeiligen Kartenwerten
 
 
-TODO10: 
-
-Image Upload mit GPT Funktion einbauen
-
 TODO11: 
 Trumpfquartett logik einbauen
 
+TODO NEU:
+Bilder von Karten in DB speichern
+Aufräumen
+Karten auf English
 
-TODO12: 
-Quartett - auf Coming soon stellen
-und zudem einen hover text unter der jeweiligen hubkarte 
-anzeigen welcher spielmodus und ob active momentan.
+
 
 <style>
 
