@@ -1,4 +1,6 @@
 <script>
+	import DeleteButton from "./DeleteButton.svelte";
+
   export let animal;
 
   // Farbzuordnung für Gruppen
@@ -153,10 +155,13 @@
   </div>
 
   {#if animal.isCustom}
-  <div class="delete-button">
+<div class="delete-button">
+  <DeleteButton on:click={deleteCard} on:keypress={handleKeyPress}/>
+  <!-- <div class="delete-button">
     <button class="delete-button" on:click={deleteCard} on:keypress={handleKeyPress} aria-label="delete card">
-      Karte löschen
+      delete card
     </button>
+  </div> -->
   </div>
   {/if}
 </div>
@@ -166,20 +171,13 @@
 
 <style>
   .delete-button {
-      margin-top: 1px;
+      margin-top: 5px;
       text-align: center;
       font-family: Arial, Helvetica, sans-serif;
       font-size: 16px;
       
   }
-  .delete-button button {
-      background-color: #e63946;
-      color: white;
-      padding: 15px 40px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-  }
+
   
   :root {
       --dark-color: #181818;
