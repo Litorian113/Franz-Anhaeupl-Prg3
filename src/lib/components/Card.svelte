@@ -154,7 +154,7 @@
 
   {#if animal.isCustom}
   <div class="delete-button">
-    <button class="delete-button" on:click={deleteCard} on:keypress={handleKeyPress} aria-label="Karte löschen">
+    <button class="delete-button" on:click={deleteCard} on:keypress={handleKeyPress} aria-label="delete card">
       Karte löschen
     </button>
   </div>

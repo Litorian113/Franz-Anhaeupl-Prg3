@@ -6,8 +6,6 @@ HEading auf home muss em fontbreaks kriegen bzw
 dynamisch die Schriftgröße verkleinern
 um 2 Zeilig zu bleiben
 
-TODO2:
-Favicon hinzufügen
 
 
 TODO5:
