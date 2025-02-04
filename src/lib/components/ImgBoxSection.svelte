@@ -1,6 +1,6 @@
 <script>
-
-
+	import { goto } from "$app/navigation";
+	import PlayButton from "./PlayButton.svelte";
 </script>
 
 <div class="info-container">
@@ -48,11 +48,14 @@
     </div>
 </div>
 <div class="section-main">
-    <div>
+    <PlayButton onclick={() => {
+        goto("/play");
+    }}/>
+    <!-- <div>
             <a href="/play" class="game-card">
             <h2>to the gamehub</h2>
             </a>
-    </div>
+    </div> -->
 
 
 </div>
