@@ -4,6 +4,8 @@
     import { onMount } from 'svelte';
     import Card from '$lib/components/Card.svelte';
     import OpenAI from "openai";
+    import GenerateButton from '$lib/components/GenerateButton.svelte';
+	import Loader from "$lib/components/Loader.svelte";
   
     const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
   
@@ -161,14 +163,16 @@
             animal card</h1>
             <div class="button-area">
                 <input type="text" bind:value={newAnimalName} placeholder="type your animals name here" />
-                <button id="generate" on:click={generateCard} disabled={isLoading}>
+                <!-- <button id="generate" on:click={generateCard} disabled={isLoading}>
                     {#if isLoading}
                         <span class="loader"></span>
                     {/if}
                     {#if !isLoading}
                         generate
                     {/if}
-                </button>
+
+                </button> -->
+                <GenerateButton on:click={generateCard}/>
             </div>
         {#if errorMessage}
             <p class="error">{errorMessage}</p>
@@ -176,6 +180,7 @@
         {#if successMessage}
             <p class="success">{successMessage}</p>
         {/if}
+        <Loader {isLoading}/>
     </div>
     {#if !generatedAnimal}
     <div class="card-placeholder">

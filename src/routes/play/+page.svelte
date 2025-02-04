@@ -4,7 +4,7 @@
 
     const games = [
       { name: "memory", path: "/play/memorie" },
-      { name: "top trumps", path: "/play/trumpfquartett" },
+      { name: "guess me", path: "/play/guessMe" },
       { name: "quiz", path: "/play/quiz" }
     ];
   </script>
