@@ -54,9 +54,15 @@
               <p class="card-title">guess me
               </p>           <ul>
                 {#each highscores.guessGame as score}
-                    <li>{score.playerName} - {score.elapsedTime}s</li>
+                <div class="listStyle">
+                <div class="left">
+                    <li>{score.playerName}</li>
+                </div>
+                <div class="right">
+                    <li class="left-li">{score.elapsedTime}s</li>
+                </div>
+            </div>
                 {/each}
-            </ul>
             </div>
           </div>
           <div class="card">
@@ -64,7 +70,14 @@
               <p class="card-title">quiz
               </p>           <ul>
                 {#each highscores.quizGame as score}
-                    <li>{score.playerName} - {score.elapsedTime}s</li>
+                <div class="listStyle">
+                <div class="left">
+                    <li>{score.playerName}</li>
+                </div>
+                <div class="right">
+                    <li class="left-li">{score.elapsedTime}s</li>
+                </div>
+            </div>
                 {/each}
             </ul>
             </div>

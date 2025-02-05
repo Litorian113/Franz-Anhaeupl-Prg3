@@ -157,14 +157,22 @@
 
 {#if showLeaderboard}
 <div class="results">
-    <h1>quiz results</h1>
-    <p>you scored {userAnswers.filter((answer) => answer === true).length} out of 8 in {elapsedTime} seconds!</p>
+    <h1 id="quizresults">quiz results</h1>
+    <p id="output">you scored {userAnswers.filter((answer) => answer === true).length} out of 8 in {elapsedTime} seconds!</p>
     <h2>leaderboard</h2>
     <ul>
         {#each leaderboard as player}
-        <li>
-            {player.playerName}: {player.correctAnswers} correct answers in {player.elapsedTime} seconds
+        <div class="format">
+        <li id="left">
+            {player.playerName}:
         </li>
+        <li id="middle">
+            {player.correctAnswers} correct
+        </li>
+        <li id="right">
+            Time: {player.elapsedTime}
+        </li>
+    </div>
         {/each}
     </ul>
     <div>
@@ -175,6 +183,36 @@
 {/if}
 
   <style>
+ 
+    #left {
+        text-align: left;
+        width: 100px;
+    }
+    #middle {
+ 
+        width: 100px;
+    }
+    #right {
+        width: 100px;
+        text-align: left;
+        padding-left: 40px;
+    }
+    .format {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        padding-left: 40px;
+        
+    }
+
+    #output {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 32px;
+    }
+    #quizresults {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 64px;
+    }
 
 .quiz, .results, .start-screen {
     background-image: url('../images/BGQIUZ.png'); /* Pfad zum Bild */

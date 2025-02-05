@@ -141,6 +141,7 @@ function startGame() {
 {/if}
 
 {#if gameStarted}
+<div class="Backdrop">
     <div class="game-container">
         <div class="oben">
             <h1>guess the animal</h1>
@@ -162,6 +163,7 @@ function startGame() {
             {/each}
         </div>
     </div>
+</div>
 {/if}
 
     {#if gameOver}
@@ -198,14 +200,14 @@ function startGame() {
     border: solid, #C4191F;
     border-radius: 50px;
 }
-.start-screen, .game-container, .overlay {
+.start-screen, .Backdrop, .overlay {
     background-image: url('../images/BGGUESS.png'); /* Pfad zum Bild */
     background-repeat: no-repeat;
     background-size: cover; /* Deckt die gesamte Breite und Höhe ab, ohne Verzerrungen */
     background-position: center; /* Zentriert das Bild */
 
 }
-.start-screen, .game-container, .overlay {
+.start-screen, .Backdrop, .overlay {
       display: flex;
       flex-direction: column;
       align-items: center;
