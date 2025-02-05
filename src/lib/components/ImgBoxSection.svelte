@@ -1,5 +1,6 @@
 <script>
 	import { goto } from "$app/navigation";
+	import HighscoreSection from "./HighscoreSection.svelte";
 	import PlayButton from "./PlayButton.svelte";
 </script>
 
@@ -7,6 +8,8 @@
     <div class="heading-section">
         <h1>welcome to the wild <br> world of quattera.</h1>
     </div>
+
+    <HighscoreSection />
 
     <div class="infocard-section">
         <div class="infocard">
@@ -82,53 +85,10 @@
     background-color: #E0E4DC;
 }
 
-.game-card {
-  width: 250px;
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f5f5f0; /* Heller Hintergrund */
-  color: #2c2a2d; /* Dunkler Text */
-  cursor: pointer;
-  border-radius: 5px;
-  position: relative; /* Für die Effekte */
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  font-weight: bold;
-  overflow: hidden; /* Verhindert Überlauf der Animation */
-  border-bottom: 10px solid #c4191f; /* Default rote Linie am unteren Rand */
-  transition: color 0.3s ease; /* Sanfter Farbwechsel */
-  /* border: none; */
-}
 
-.game-card::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #c4191f;
-  z-index: 0; /* Legt es hinter den Text */
-  transform: translateY(100%); /* Startet außerhalb des Buttons */
-  transition: transform 0.3s ease; /* Sanfter Übergang */
-}
 
-.game-card:hover::before {
-  transform: translateY(0); /* Bewegt die rote Farbe nach oben */
-}
 
-.game-card:hover {
-  color: #f5f5f0; /* Textfarbe beim Hover auf Weiß ändern */
-  /* z-index: 1;
-  position: relative; */
-}
 
-.game-card > * {
-  position: relative;
-  z-index: 1; /* Text bleibt über der roten Farbe sichtbar */
-}
 
 
     a {

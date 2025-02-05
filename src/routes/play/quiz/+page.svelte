@@ -167,7 +167,10 @@
         </li>
         {/each}
     </ul>
+    <div>
+    <button on:click={() => window.location.href = '/play'}>back to hub</button>
     <button on:click={restartQuiz}>restart quiz</button>
+    </div>
 </div>
 {/if}
 
