@@ -138,27 +138,29 @@ function startGame() {
 </div>
 {/if}
 
+{#if gameStarted}
     <div class="game-container">
-    <div class="oben">
-        <h1>guess the animal</h1>
+        <div class="oben">
+            <h1>guess the animal</h1>
 
-        <div class="chat-container">
-            <button on:click={getHint}>do you need a hint?</button>
-            <p class="chat-response">{chatResponse}</p>
-            <p class="timer">time: {elapsedTime}</p>
+            <div class="chat-container">
+                <button on:click={getHint}>do you need a hint?</button>
+                <p class="chat-response">{chatResponse}</p>
+                <p class="timer">time: {elapsedTime}</p>
+            </div>
+        </div>
+
+        <div class="card-grid">
+            {#each selectedCards as animal (animal._id)}
+                <div 
+                    class="cardSize {excludedCards.has(animal._id) ? 'inactive' : ''}"
+                    on:click={() => toggleCard(animal)}>
+                    <Card animal={animal} />
+                </div>
+            {/each}
         </div>
     </div>
-
-    <div class="card-grid">
-        {#each selectedCards as animal (animal._id)}
-            <div 
-                class="cardSize {excludedCards.has(animal._id) ? 'inactive' : ''}"
-                on:click={() => toggleCard(animal)}>
-                <Card animal={animal} />
-            </div>
-        {/each}
-    </div>
-</div>
+{/if}
 
     {#if gameOver}
         <div class="overlay">

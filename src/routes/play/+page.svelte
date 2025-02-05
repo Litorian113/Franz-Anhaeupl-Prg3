@@ -34,8 +34,12 @@ main {
   box-sizing: border-box; /* Stellt sicher, dass Padding berücksichtigt wird */
   padding-bottom: 10%;
 }
+
+
     .game-grid {
       display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
       gap: 50px;
       justify-content: center;
     }
@@ -96,5 +100,16 @@ main {
       font-size: 64px;
 
     }
+
+    @media (max-width: 768px) {
+  main {
+    height: auto;
+  }
+  .heading-section {
+    font-size: 32px;
+    padding-top: 40px;
+    padding-bottom: 30px;
+  }
+}
   </style>
   

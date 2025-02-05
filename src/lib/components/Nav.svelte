@@ -86,4 +86,18 @@ a:hover::after {
         gap: 10px;
         color: #C4191F;
     }
+
+    @media (max-width: 768px) {
+    nav {
+        font-size: 18px; /* Reduce font size for navigation */
+    }
+
+    a {
+        font-size: 18px; /* Reduce link font size */
+    }
+
+    .burger-menu {
+        font-size: 26px; /* Slightly adjust the burger icon size */
+    }
+}
 </style>

@@ -85,6 +85,12 @@
     background-color: #E0E4DC;
 }
 
+@media (max-width: 768px) {
+    .section-main {
+        height: 30vh;
+    }
+}
+
 
 
 
@@ -160,5 +166,12 @@
     text-transform: lowercase;
 }
 
+@media (max-width: 768px) {
+    .heading-section h1 {
+        font-size: 48px;
+        padding-bottom: 20px;
+    }
+
+}
 
 </style>
