@@ -129,22 +129,23 @@ function startGame() {
 </script>
 
 {#if !gameStarted}
-    <div class="overlay">
-        <div class="overlay-content">
-            <h2>enter your name</h2>
-            <input type="text" bind:value={playerName} placeholder="Your name..." />
-            <button on:click={startGame}>start game</button>
-        </div>
+<div class="start-screen">
+    <h2 class="main-header">welcome to <br> guess me</h2>
+    <div class="gameStart">
+        <input type="text" bind:value={playerName} placeholder="enter your name" />
+        <button id="generate" on:click={startGame} disabled={!playerName}>start game</button>
     </div>
+</div>
 {/if}
 
-<div class="game-container">
+    <div class="game-container">
     <div class="oben">
-        <h1>guess the Animal</h1>
+        <h1>guess the animal</h1>
 
         <div class="chat-container">
             <button on:click={getHint}>do you need a hint?</button>
             <p class="chat-response">{chatResponse}</p>
+            <p class="timer">time: {elapsedTime}</p>
         </div>
     </div>
 
@@ -152,21 +153,21 @@ function startGame() {
         {#each selectedCards as animal (animal._id)}
             <div 
                 class="cardSize {excludedCards.has(animal._id) ? 'inactive' : ''}"
-                on:click={() => toggleCard(animal)}
-            >
+                on:click={() => toggleCard(animal)}>
                 <Card animal={animal} />
             </div>
         {/each}
     </div>
+</div>
 
     {#if gameOver}
         <div class="overlay">
             <div class="overlay-content">
                 {#if win}
-                    <h2>🎉 You won!</h2>
+                    <h2>🎉 you won!</h2>
                     <p>the secret animal was: {secretAnimal.name_german}.</p>
                 {:else}
-                    <h2>❌ You lost!</h2>
+                    <h2>❌ you lost!</h2>
                     <p>the correct animal was: {secretAnimal.name_german}.</p>
                 {/if}
                 <h3>Leaderboard</h3>
@@ -182,9 +183,136 @@ function startGame() {
             </div>
         </div>
     {/if}
-</div>
+
 
 <style>
+
+
+.start-screen, .game-container, .overlay {
+    background-image: url('../images/BGGUESS.png'); /* Pfad zum Bild */
+    background-repeat: no-repeat;
+    background-size: cover; /* Deckt die gesamte Breite und Höhe ab, ohne Verzerrungen */
+    background-position: center; /* Zentriert das Bild */
+
+}
+.start-screen, .game-container, .overlay {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+.start-screen {
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#generate {
+    padding: 12px 45px;
+    font-size: 16px;
+    color: #C4191F;
+    border: 2px solid #C4191F;
+    border-radius: 15px;
+    cursor: pointer;
+    background-image: url('../images/stageCover.jpg'); /* Pfad zum Bild */
+    background-repeat: no-repeat;
+    background-size: cover; /* Deckt die gesamte Breite und Höhe ab, ohne Verzerrungen */
+    background-position: center; /* Zentriert das Bild */
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+#generate::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #C4191F;
+    z-index: -1;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+#generate:hover::before {
+    transform: translateX(0);
+}
+
+#generate:hover {
+    color: #E0E4DC;
+    border-color: #C4191F;
+}
+
+#generate:disabled {
+    background: #ccc;
+    color: #555555;
+    cursor: not-allowed;
+    border: 2px solid #ccc;
+    position: relative;
+}
+
+#generate:disabled::before {
+    content: none; /* Entfernt die Animation */
+}
+
+#generate:disabled:hover {
+    cursor: not-allowed;
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    color: #2C2A2D;
+    background-color: #E0E4DC;
+    cursor: auto;
+    border-style: solid;
+    border: none;             
+    border-bottom: 2px solid #7e7e7e;
+    width: 270px;
+}
+
+input:focus {
+    outline: none;  /* Entfernt den blauen Rahmen */
+    border-bottom: 2px solid #C4191F;  /* Optional: Linie unten ändern */
+}
+
+.main-header {
+    font-family: Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        font-size: 64px;
+        line-height: 55px;
+        color: #2C2A2D;
+        text-align: left;
+        padding-right: 125px;
+}
+
+.gameStart {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.start-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
     .oben {
         display: flex;
         flex-direction: column;
@@ -196,6 +324,7 @@ function startGame() {
         display: flex;
         flex-direction: column;
         text-align: center;
+        height: 100vh;
     }
     .chat-container {
         display: flex;
@@ -235,7 +364,7 @@ function startGame() {
         left: 0;
         width: 100%;
         height: 100%;
-        background: #E0E4DC;
+        /* background: #E0E4DC; */
         display: flex;
         justify-content: center;
         align-items: center;

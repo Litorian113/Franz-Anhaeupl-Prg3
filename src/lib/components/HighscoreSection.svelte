@@ -29,87 +29,176 @@
 </script>
 
 <div class="highscore-section">
-    <h2>🏆 leaderboard overview</h2>
+    <h2>🏆 game leaderboards</h2>
+    <div class="sectionHigh">
     <div class="highscore-grid">
-        <!-- Guess Game Highscores -->
-        <div class="highscore-column">
-            <h3>memory</h3>
-            <ul>
+        <div class="card">
+            <div class="card-content">
+              <p class="card-title">memory
+              </p>           <ul>
                 {#each highscores.memoryGame as score}
                     <li>{score.playerName} - {score.elapsedTime}s</li>
                 {/each}
             </ul>
-        </div>
-
-        <!-- Mode 2 Highscores -->
-        <div class="highscore-column">
-            <h3>guess me</h3>
-            <ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-content">
+              <p class="card-title">guess me
+              </p>           <ul>
                 {#each highscores.guessGame as score}
                     <li>{score.playerName} - {score.elapsedTime}s</li>
                 {/each}
             </ul>
-        </div>
-
-        <!-- Mode 3 Highscores -->
-        <div class="highscore-column">
-            <h3>quiz</h3>
-            <ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-content">
+              <p class="card-title">quiz
+              </p>           <ul>
                 {#each highscores.quizGame as score}
                     <li>{score.playerName} - {score.elapsedTime}s</li>
                 {/each}
             </ul>
-        </div>
+            </div>
+          </div>
+     
+       
     </div>
+</div>
 </div>
 
 <style>
+    .sectionHigh {
+        height: auto;
+        display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 5px;
+    }
+
     .highscore-section {
         width: 100%;
-        height: 70vh;
+        /* height: 70vh; */
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         padding: 20px;
+        padding-bottom: 4em;
     }
 
     .highscore-section h2 {
         margin-bottom: 20px;
-        font-size: 2rem;
         text-align: center;
     }
 
     .highscore-grid {
         display: flex;
-        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+
         max-width: 1200px;
+        flex-wrap: wrap;
         justify-content: space-around;
         gap: 20px;
     }
 
-    .highscore-column {
-        flex: 1;
-        background: #f8f9fa;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    }
+    /* .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 5px;
+    justify-items: center;
+    margin-top: 100px;
+  } */
 
-    .highscore-column h3 {
-        margin-bottom: 15px;
-        font-size: 1.5rem;
-        color: #C4191F;
-    }
+    /* From Uiverse.io by gharsh11032000 */ 
+.card {
+  width: 300px;
+  height: 400px;
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #83322B 0%, #E23626 46%, #C4191F 100%);
+  border-radius: 8px;
+  color: white;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+  cursor: pointer;
+}
+h2 {
+    padding-bottom: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px;
+}
 
-    .highscore-column ul {
-        list-style: none;
-        padding: 0;
-    }
+.card-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* height: 100%; */
+}
 
-    .highscore-column li {
-        font-size: 1.2rem;
-        padding: 5px;
-    }
+.card-content .card-title {
+    font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: inherit;
+  /* text-transform: uppercase; */
+}
+
+li {
+    list-style-type: none;
+    text-align: left;
+    align-items: center;
+    padding-right: 3em;
+    line-height: 1.5em;
+}
+
+.card:hover {
+  transform: rotateY(10deg) rotateX(10deg) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.1));
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+  z-index: 1;
+}
+
+.card:hover:before {
+  transform: translateX(-100%);
+}
+
+.card:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.1));
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+  z-index: 1;
+}
+
+.card:hover:after {
+  transform: translateX(100%);
+}
+
+
+
+
+
+
 </style>

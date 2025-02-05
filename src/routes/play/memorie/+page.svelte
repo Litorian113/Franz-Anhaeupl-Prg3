@@ -129,10 +129,9 @@
     });
 </script>
 
-<main>
     {#if !gameStarted}
         <div class="start-screen">
-            <h2 class="main-header">start memory</h2>
+            <h2 class="main-header">welcome to <br> memory</h2>
             <div class="gameStart">
                 <input type="text" bind:value={playerName} placeholder="enter your name" />
                 <button id="generate" on:click={startGame} disabled={!playerName}>start game</button>
@@ -173,16 +172,36 @@
                         <li>{score.playerName} – {score.elapsedTime} Sekunden</li>
                     {/each}
                 </ul>
-                
-                <button on:click={restartGame}>play again</button>
                 <button on:click={returnToHub}>back to hub</button>
+                <button on:click={restartGame}>play again</button>
             </div>
         </div>
     {/if}
-</main>
+
 
 
 <style>
+.page, .highscore-overlay, .start-screen {
+    background-image: url('../images/BGMEMORY.png'); /* Pfad zum Bild */
+    background-repeat: no-repeat;
+    background-size: cover; /* Deckt die gesamte Breite und Höhe ab, ohne Verzerrungen */
+    background-position: center; /* Zentriert das Bild */
+}
+
+.start-screen {
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .page {
 
     padding-top: 5%;
@@ -195,10 +214,7 @@
     justify-content: center;
     align-items: center;
 }
-main {
-    text-align: center;
-    padding: 20px;
-}
+
 
 .start-screen {
     display: flex;
@@ -237,7 +253,7 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #E0E4DC;
+    /* background: #E0E4DC; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -305,7 +321,10 @@ main {
     border: 2px solid #C4191F;
     border-radius: 15px;
     cursor: pointer;
-    background-color: #E0E4DC;
+    background-image: url('../images/stageCover.jpg'); /* Pfad zum Bild */
+    background-repeat: no-repeat;
+    background-size: cover; /* Deckt die gesamte Breite und Höhe ab, ohne Verzerrungen */
+    background-position: center; /* Zentriert das Bild */
     position: relative;
     overflow: hidden;
     z-index: 1;
@@ -404,7 +423,7 @@ li {
         line-height: 55px;
         color: #2C2A2D;
         text-align: left;
-        padding-right: 100px;
+        padding-right: 120px;
 }
 
 .heading1 {

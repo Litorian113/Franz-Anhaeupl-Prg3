@@ -129,7 +129,7 @@
     <h1 class="main-header">welcome to <br> the quiz</h1>
     <div class="gameStart">
     <input type="text" placeholder="enter your name" bind:value={playerName} />
-    <button id="generate" on:click={startQuiz} disabled={!playerName}>start quiz</button>
+    <button id="generate" on:click={startQuiz} disabled={!playerName}>start game</button>
 </div>
 </div>
 {/if}
@@ -175,6 +175,28 @@
 {/if}
 
   <style>
+
+.quiz, .results, .start-screen {
+    background-image: url('../images/BGQIUZ.png'); /* Pfad zum Bild */
+    background-repeat: no-repeat;
+    background-size: cover; /* Deckt die gesamte Breite und Höhe ab, ohne Verzerrungen */
+    background-position: center; /* Zentriert das Bild */
+}
+
+.start-screen {
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
  .main-header {
         font-family: Arial, Helvetica, sans-serif;
         font-weight: 600;
@@ -183,7 +205,7 @@
         color: #2C2A2D;
         text-align: left;
         padding-bottom: 30px;
-        padding-right: 150px;
+        padding-right: 110px;
     }
 
     .gameStart {
@@ -199,7 +221,11 @@
     border: 2px solid #C4191F;
     border-radius: 15px;
     cursor: pointer;
-    background-color: #E0E4DC;
+    /* background-color: #E0E4DC; */
+    background-image: url('../images/stageCover.jpg'); /* Pfad zum Bild */
+    background-repeat: no-repeat;
+    background-size: cover; /* Deckt die gesamte Breite und Höhe ab, ohne Verzerrungen */
+    background-position: center; /* Zentriert das Bild */
     position: relative;
     overflow: hidden;
     z-index: 1;
