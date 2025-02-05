@@ -1,38 +1,22 @@
-# sv
+Bei diesem Projekt handelt sich um ein Projekt im Rahmen des Kurses Programmieren III im WiSe24/25 an der Hochschule für Gestaltung in Schwäbisch Gmünd.
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
-## Creating a project
+Um das Projekt zu starten musst du in deinem Terminal folgende Befehle ausführen.
 
-If you're seeing this, you've probably already done this step. Congrats!
+-> npm install
+-> npm run dev
 
-```bash
-# create a new project in the current directory
-npx sv create
+Im Rahmen des Kurses haben wir uns mit Svelte auseinandergesetzt. Ich habe Svelte Kit verwendet um eine Website anzulegen bei dem ein User Spielkarten mit der API von Chat gpt 
+erstellen kann und diese dann in einem Gamehub in verschiedenen Spielen wiederfinden.
 
-# create a new project in my-app
-npx sv create my-app
-```
+Es gibt ein implementiertes Memorie, ein Ratespiel und ein Quiz.
 
-## Developing
+Desweiteren verfügt die Website über eine Collection Page die alle Karten anzeigt.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Mir hat der Kurs viel Spaß gemacht und würde noch folgende Dinge überarbeiten:
 
-```bash
-npm run dev
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+TODO:
 
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Highscore Listen verschönern.
+Responsives Layout verbessern, erst recht bei den Spielen.
