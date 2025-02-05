@@ -16,6 +16,10 @@
     let showHighscoreOverlay = false;
     let highscores = [];
 
+    // $: {
+    //     console.log(flippedIndexes, flippedCards)
+    // }
+
     // Karten abrufen und duplizieren (für Memory-Spiel)
     async function fetchMemorieCards() {
         try {
@@ -46,14 +50,21 @@
         }
     }
 
+    let foundIndexes = {};
+    $: {
+        console.log(foundIndexes);
+    }
+
     function checkForMatch() {
         const [firstIndex, secondIndex] = flippedIndexes;
 
         if (cards[firstIndex].id === cards[secondIndex].id) {
             matchedCards += 2;
+            foundIndexes = {...foundIndexes, [`Card${firstIndex}`]: true, [`Card${secondIndex}`]: true}
             resetBoard();
         } else {
             setTimeout(() => {
+                
                 flippedCards[firstIndex] = false;
                 flippedCards[secondIndex] = false;
                 resetBoard();
@@ -84,7 +95,7 @@
 
                 const data = await response.json();
                 if (data.success) {
-                    console.log('Highscore gespeichert:', data.result);
+                    // console.log('Highscore gespeichert:', data.result);
                     fetchHighscores();
                 } else {
                     console.error('Fehler beim Speichern des Highscores');
@@ -150,6 +161,7 @@
             {#each cards as card, index}
                 <Memoriecard
                     animal={card}
+                    isGray={`Card${index}` in foundIndexes}
                     isFlipped={flippedCards[index]}
                     on:flip={() => flipCard(index)}
                 />

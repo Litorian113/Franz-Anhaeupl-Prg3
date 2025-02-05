@@ -247,7 +247,7 @@
     
     .card-id {
         flex: 1;
-        padding-left: 20px;
+        /* padding-left: 20px; */
         border-radius: 38px 0px 0px 0px;
     }
     

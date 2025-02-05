@@ -3,6 +3,7 @@
     import { onMount } from 'svelte';
     import OpenAI from "openai";
     import { SvelteSet } from 'svelte/reactivity';
+	import HelpBtn from '$lib/components/HelpBtn.svelte';
 
     const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
     const openai = new OpenAI({ apiKey, dangerouslyAllowBrowser: true });
@@ -65,10 +66,11 @@
                 messages: [
                     {
                         role: "system",
-                        content: `Provide a short, somewhat cryptic hint about the secret animal.
+                        content: `Provide a short hint about the secret animal on a simple english level.
                         Do not reveal the name or make it too obvious, but also do not make it overly difficult.
                         Ensure that the hint gives the player some insight but still requires thought to deduce.
-                        Example: "It has a trait that makes it a master of patience in the wild."`
+                        Make sure that your tips always change in the information. Make sure that the information actually matches the secret animals 
+characteristics "`
                     },
                     {
                         role: "user",
@@ -78,7 +80,7 @@
                         Speed: ${secretAnimal.top_speed} km/h, 
                         Length: ${secretAnimal.max_length} cm, 
                         Intelligence: ${secretAnimal.intelligence}/10.
-                        Generate a clever, slightly enigmatic hint based on these attributes. Not longer than 70 Characters.`
+                        Generate a clever, slightly enigmatic hint based on these attributes. Not longer than 80 Characters.`
                     }
                 ]
             });
@@ -144,12 +146,12 @@ function startGame() {
             <h1>guess the animal</h1>
 
             <div class="chat-container">
-                <button on:click={getHint}>do you need a hint?</button>
-                <p class="chat-response">{chatResponse}</p>
-                <p class="timer">time: {elapsedTime}</p>
+                <HelpBtn on:click={getHint}/>
+                <!-- <button on:click={getHint}>do you need a hint?</button> -->
+                <p class="timer">{elapsedTime}</p>
             </div>
+            <p class="chat-response">{chatResponse}</p>
         </div>
-
         <div class="card-grid">
             {#each selectedCards as animal (animal._id)}
                 <div 
@@ -189,7 +191,13 @@ function startGame() {
 
 <style>
 
-
+.timer {
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 15px;
+    border: solid, #C4191F;
+    border-radius: 50px;
+}
 .start-screen, .game-container, .overlay {
     background-image: url('../images/BGGUESS.png'); /* Pfad zum Bild */
     background-repeat: no-repeat;
@@ -220,6 +228,11 @@ function startGame() {
     }
 }
 
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 64px;
+}
 #generate {
     padding: 12px 45px;
     font-size: 16px;
@@ -321,32 +334,38 @@ input:focus {
         margin-top: 5em;
         justify-content: center;
         align-items: center;
+
     }
     .game-container {
         display: flex;
         flex-direction: column;
         text-align: center;
-        height: 100vh;
+        height: auto;
+        padding-top: 0px;
     }
     .chat-container {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         margin-bottom: 20px;
+        gap: 40px;
     }
     .chat-response {
-        background-color: #e0e0e0;
-        padding: 10px;
-        border-radius: 5px;
-        max-width: 400px;
+        display: flex;
+        flex-direction: column;
+        background-color: #e0e4dc;
+        padding: 0px;
+        max-width: 450px;
         text-align: center;
+        font-size: 24px;
+        margin-bottom: 15px;
+        height: 1vh;
     }
     .card-grid {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
         justify-content: center;
-        margin-top: 20px;
     }
     .cardSize {
         transform: scale(0.8);

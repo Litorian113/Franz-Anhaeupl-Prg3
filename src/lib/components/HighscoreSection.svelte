@@ -37,7 +37,14 @@
               <p class="card-title">memory
               </p>           <ul>
                 {#each highscores.memoryGame as score}
-                    <li>{score.playerName} - {score.elapsedTime}s</li>
+                <div class="listStyle">
+                <div class="left">
+                    <li>{score.playerName}</li>
+                </div>
+                <div class="right">
+                    <li class="left-li">{score.elapsedTime}s</li>
+                </div>
+            </div>
                 {/each}
             </ul>
             </div>
@@ -69,6 +76,49 @@
 </div>
 
 <style>
+
+    .listStyle {
+        display: flex;
+        flex-direction: row;
+        list-style-type:none;
+        width: fit-content;
+        line-height: 1.5em;
+    }
+
+    .left {
+        display: flex;
+        text-align: left;
+        padding-right: 30px;
+        padding-left: 30px;
+        width: 50px;
+    }
+    .right {
+        display: flex;
+        text-align: right;
+        padding-right: 30px;
+        padding-left: 30px;
+        width: 50px;
+        flex-direction: row-reverse;
+
+    }
+    .left-li {
+        text-align: right;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    /* li {
+    list-style-type: none;
+    text-align: left;
+    align-items: center;
+    padding-right: 3em;
+    line-height: 1.5em;
+} */
     .sectionHigh {
         height: auto;
         display: grid;
@@ -151,13 +201,13 @@ h2 {
   /* text-transform: uppercase; */
 }
 
-li {
+/* li {
     list-style-type: none;
     text-align: left;
     align-items: center;
     padding-right: 3em;
     line-height: 1.5em;
-}
+} */
 
 .card:hover {
   transform: rotateY(10deg) rotateX(10deg) scale(1.05);

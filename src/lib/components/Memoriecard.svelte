@@ -2,6 +2,7 @@
     import { createEventDispatcher } from 'svelte';
     export let animal;
     export let isFlipped = false;
+    export let isGray;
   
     // Farbzuordnung für Gruppen
     const groupColors = {
@@ -43,7 +44,7 @@
 </script>
 
   
-  <div class="card-wrapper">
+  <div class="card-wrapper" class:gray={isGray}>
     <div class="card-inner {isFlipped ? '' : 'flipped'}">
 
       
@@ -89,6 +90,12 @@
       perspective: 1000px;  /* Perspektive für Flip-Effekt */
       border-radius: 40px;
       /* transform: scale(0.5); */
+    }
+
+    .gray {
+      transition: filter 1s ease-out linear;
+      transition-delay: 500ms;
+      filter: grayscale(1)
     }
   
     .card-inner {
